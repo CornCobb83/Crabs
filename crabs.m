@@ -6,8 +6,8 @@ function crabs ()
 % Initialize captain location, heading and size
 %This
 xCapt = 1000;
-yCapt = 1200;
-thetaCapt = -pi/2;
+yCapt = 500;
+thetaCapt = pi/2;
 sizeCapt = 50;
 %Changing xCapt and yCapt change the captains location
 
