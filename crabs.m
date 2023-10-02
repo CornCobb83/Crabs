@@ -7,7 +7,7 @@ function crabs ()
 %This
 xCapt = 1000;
 yCapt = 500;
-thetaCapt = pi/2;
+thetaCapt = -pi/2;
 sizeCapt = 50;
 %Changing xCapt and yCapt change the captains location
 
@@ -17,5 +17,31 @@ sizeCapt = 50;
 % input and output arguments.
 captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
 %*******************************************************
+
+cmd = "null";
+
+while (cmd != "Q")
+
+  cmd = kbhit();
+
+    if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
+
+      %remove old captain
+      for (i = 1 : length(captainGraphics))
+        set(captainGraphics(i), 'Visible', "off");
+      endfor
+
+      %move captain
+      [xCapt, yCapt, thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt);
+
+      %draw new captain
+      captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
+
+  endif
+
+endwhile
+
+close all
+
 endfunction
 
