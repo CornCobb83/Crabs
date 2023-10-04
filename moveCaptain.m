@@ -7,7 +7,8 @@ thetaCapt = theta;
 dTheta = pi/6;
 
 if (key == "w")
-  yCapt = y - 50;
+  xCapt += (cos(theta) * 50);
+  yCapt += (sin(theta) * 50);
 endif
 
 if (key == "a")
@@ -16,7 +17,8 @@ if (key == "a")
 endif
 
 if (key == "s")
-  yCapt = y + 50;
+  xCapt -= (cos(theta) * 50);
+  yCapt -= (sin(theta) * 50);
 endif
 
 if (key == "d")
