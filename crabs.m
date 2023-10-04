@@ -12,10 +12,20 @@ sizeCapt = 50;
 dStep = 50;
 %Changing xCapt and yCapt change the captains location
 
-xCrab1 = 1000;
-yCrab1 = 500;
+xCrab1 = 500;
+yCrab1 = 300;
 thetaCrab1 = -pi/2;
 sizeCrab1 = 30;
+
+xCrab2 = 1800;
+yCrab2 = 800;
+thetaCrab2 = -pi/2;
+sizeCrab2 = 30;
+
+xCrab3 = 300;
+yCrab3 = 1000;
+thetaCrab3 = -pi/2;
+sizeCrab3 = 30;
 
 % Draw the captain and initialize graphics handles
 %*********************************************************
@@ -23,6 +33,8 @@ sizeCrab1 = 30;
 % input and output arguments.
 captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
 crab1Graphics = drawCrab1(xCrab1, yCrab1, thetaCrab1, sizeCrab1);
+crab2Graphics = drawCrab1(xCrab2, yCrab2, thetaCrab2, sizeCrab2);
+crab3Graphics = drawCrab1(xCrab3, yCrab3, thetaCrab3, sizeCrab3);
 %*******************************************************
 
 cmd = "null";

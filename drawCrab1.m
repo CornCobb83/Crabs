@@ -19,16 +19,19 @@ pt7=crab1( : , 7);
 pt8=crab1( : , 8);
 pt9=crab1( : , 9);
 pt10=crab1( : , 10);
+pt11=crab1( : , 11);
+pt12=crab1( : , 12);
 
 crab1Graphics(1) = drawLine(pt1 , pt2 , "r");
 crab1Graphics(2) = drawLine(pt2 , pt3 , "r");
-crab1Graphics(3) = drawLine(pt2 , pt5 , "r");
-crab1Graphics(4) = drawLine(pt4 , pt5 , "r");
-crab1Graphics(5) = drawLine(pt5 , pt6 , "r");
-crab1Graphics(6) = drawLine(pt6 , pt1 , "r");
-crab1Graphics(7) = drawLine(pt7 , pt8 , "r");
-crab1Graphics(8) = drawLine(pt8 , pt9 , "r");
-crab1Graphics(9) = drawLine(pt9 , pt10 , "r");
+crab1Graphics(3) = drawLine(pt3 , pt4 , "r");
+crab1Graphics(4) = drawLine(pt4 , pt1 , "r");
+crab1Graphics(5) = drawLine(pt1 , pt5 , "r");
+crab1Graphics(6) = drawLine(pt6 , pt7 , "r");
+crab1Graphics(7) = drawLine(pt4 , pt8 , "r");
+crab1Graphics(8) = drawLine(pt2 , pt9 , "r");
+crab1Graphics(9) = drawLine(pt10 , pt11 , "r");
+crab1Graphics(10) = drawLine(pt3 , pt12 , "r");
 
 endfunction
 
