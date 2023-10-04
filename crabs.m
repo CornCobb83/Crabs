@@ -5,6 +5,7 @@ function crabs ()
 [mapHeight , mapWidth] = drawMap( "BGImage.png" );
 % Initialize captain location, heading and size
 %This
+
 xCapt = 1000;
 yCapt = 500;
 thetaCapt = -pi/2;
@@ -15,17 +16,17 @@ dStep = 50;
 xCrab1 = 500;
 yCrab1 = 300;
 thetaCrab1 = -pi/2;
-sizeCrab1 = 30;
+sizeCrab1 = 35;
 
 xCrab2 = 1800;
 yCrab2 = 800;
 thetaCrab2 = -pi/2;
-sizeCrab2 = 30;
+sizeCrab2 = 35;
 
 xCrab3 = 300;
 yCrab3 = 1000;
 thetaCrab3 = -pi/2;
-sizeCrab3 = 30;
+sizeCrab3 = 35;
 
 % Draw the captain and initialize graphics handles
 %*********************************************************
@@ -37,11 +38,18 @@ crab2Graphics = drawCrab1(xCrab2, yCrab2, thetaCrab2, sizeCrab2);
 crab3Graphics = drawCrab1(xCrab3, yCrab3, thetaCrab3, sizeCrab3);
 %*******************************************************
 
+
+
 cmd = "null";
 
 while (cmd != "Q")
 
+  %performTaskEverySecond(xCrab1, yCrab1, thetaCrab1);
+  %moveCrab(xCrab1, yCrab1, thetaCrab1);
+
   cmd = kbhit();
+
+    [xCrab1, yCapt1, thetaCapt1] = moveCrab(xCrab1, yCrab1, thetaCrab1);
 
     if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
 
@@ -56,7 +64,7 @@ while (cmd != "Q")
       %draw new captain
       captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
 
-  endif
+endif
 
 endwhile
 
