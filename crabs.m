@@ -9,13 +9,20 @@ xCapt = 1000;
 yCapt = 500;
 thetaCapt = -pi/2;
 sizeCapt = 50;
+dStep = 50;
 %Changing xCapt and yCapt change the captains location
+
+xCrab1 = 1000;
+yCrab1 = 500;
+thetaCrab1 = -pi/2;
+sizeCrab1 = 30;
 
 % Draw the captain and initialize graphics handles
 %*********************************************************
 % Put your call to drawCapt() here ..... You must give drawCapt its
 % input and output arguments.
 captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
+crab1Graphics = drawCrab1(xCrab1, yCrab1, thetaCrab1, sizeCrab1);
 %*******************************************************
 
 cmd = "null";
@@ -32,7 +39,7 @@ while (cmd != "Q")
       endfor
 
       %move captain
-      [xCapt, yCapt, thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt);
+      [xCapt, yCapt, thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt, dStep, mapHeight, mapWidth);
 
       %draw new captain
       captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
