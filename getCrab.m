@@ -1,4 +1,4 @@
-function crab1 = getCrab1 (s)
+function crab = getCrab (s)
 
 %crabPt1 = [crabSize/2; crabSize; 1];
 %crabPt2 = [-crabSize; crabSize; 1];
@@ -31,6 +31,6 @@ crabPt10 = [0 ;-s ;1 ];
 crabPt11 = [0 ;-s*2 ;1 ];
 crabPt12 = [-s ;-s*2 ;1 ];
 
-crab1 = [crabPt1, crabPt2, crabPt3, crabPt4, crabPt5, crabPt6, crabPt7, crabPt8, crabPt9, crabPt10, crabPt11, crabPt12];
+crab = [crabPt1, crabPt2, crabPt3, crabPt4, crabPt5, crabPt6, crabPt7, crabPt8, crabPt9, crabPt10, crabPt11, crabPt12];
 
 endfunction
