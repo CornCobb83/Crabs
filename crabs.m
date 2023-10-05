@@ -15,13 +15,13 @@ dStep1 = 50;
 
 xCrab2 = 1800;
 yCrab2 = 800;
-thetaCrab2 = -pi/2;
+thetaCrab2 = pi/2;
 sizeCrab2 = 35;
 dStep2 = 50;
 
 xCrab3 = 300;
 yCrab3 = 1000;
-thetaCrab3 = -pi/2;
+thetaCrab3 = pi/4;
 sizeCrab3 = 35;
 dStep3 = 50;
 
@@ -29,6 +29,7 @@ captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
 crab1Graphics = drawCrab(xCrab1, yCrab1, thetaCrab1, sizeCrab1);
 crab2Graphics = drawCrab(xCrab2, yCrab2, thetaCrab2, sizeCrab2);
 crab3Graphics = drawCrab(xCrab3, yCrab3, thetaCrab3, sizeCrab3);
+
 cmd = "null";
 
 while (cmd != "Q")
@@ -39,7 +40,7 @@ while (cmd != "Q")
     endfor
 
     %move crab
-    [xCrab1, yCapt1, thetaCrab1] = moveCrab(xCrab1, yCrab1, thetaCrab1, dStep1, mapHeight, mapWidth);
+    [xCrab1, yCrab1, thetaCrab1] = moveCrab(xCrab1, yCrab1, thetaCrab1, dStep1, mapHeight, mapWidth);
 
     %draw new crab
     crab1Graphics = drawCrab(xCrab1, yCrab1, thetaCrab1, sizeCrab1);
@@ -50,7 +51,7 @@ while (cmd != "Q")
     endfor
 
     %move crab
-    [xCrab2, yCapt2, thetaCrab2] = moveCrab(xCrab2, yCrab2, thetaCrab2, dStep2, mapHeight, mapWidth);
+    [xCrab2, yCrab2, thetaCrab2] = moveCrab(xCrab2, yCrab2, thetaCrab2, dStep2, mapHeight, mapWidth);
 
     %draw new crab
     crab2Graphics = drawCrab(xCrab2, yCrab2, thetaCrab2, sizeCrab2);
@@ -61,7 +62,7 @@ while (cmd != "Q")
     endfor
 
     %move crab
-    [xCrab3, yCapt3, thetaCrab3] = moveCrab(xCrab3, yCrab3, thetaCrab3, dStep3, mapHeight, mapWidth);
+    [xCrab3, yCrab3, thetaCrab3] = moveCrab(xCrab3, yCrab3, thetaCrab3, dStep3, mapHeight, mapWidth);
 
     %draw new crab
     crab3Graphics = drawCrab(xCrab3, yCrab3, thetaCrab3, sizeCrab3);

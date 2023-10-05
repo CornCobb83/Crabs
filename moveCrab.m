@@ -4,17 +4,20 @@ xCrab = x;
 yCrab = y;
 thetaCrab = theta;
 
-dTheta = pi/6;
+dTheta = -pi/2;
 
-xtemp = xCrab + 300;
-ytemp = yCrab + 0;
+xtemp = x + (cos(theta) * dStep);
+ytemp = y + (sin(theta) * dStep);
 
-if (xtemp > 0 && xtemp < width && ytemp > 0 && ytemp < height)
-  xCrab += 300;
-  yCrab += 0;
+if (xtemp > 0 && xtemp < width && ytemp > 0 && ytemp < height - 50)
+xCrab += (cos(theta) * dStep);
+yCrab += (sin(theta) * dStep);
+%xCrab += 100;
+%yCrab += 100;
 else
-  xCrab += 0;
-  yCrab += 0;
+thetaCapt = theta + dTheta;
+xCrab += (cos(theta) * dStep);
+yCrab += (sin(theta) * dStep);
 endif
 
 endfunction
