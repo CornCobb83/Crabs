@@ -26,8 +26,8 @@ if (key == "s")
   tempxCapt = x - (cos(theta) * dStep);
   tempyCapt = y - (sin(theta) * dStep);
   if (tempxCapt > 0 && tempxCapt < width && tempyCapt > 0 && tempyCapt < height)
-    xCapt -= (cos(theta) * dStep);
-    yCapt -= (sin(theta) * dStep);
+    xCapt -= (cos(theta) * dStep)/2;
+    yCapt -= (sin(theta) * dStep)/2;
   else
     xCapt -= 0;
     yCapt -= 0;
