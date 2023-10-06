@@ -9,16 +9,12 @@ dTheta = pi/6;
 if (key == "w")
   tempxCapt = x + (cos(theta) * dStep);
   tempyCapt = y + (sin(theta) * dStep);
-
   if (tempxCapt > 0 && tempxCapt < width && tempyCapt > 0 && tempyCapt < height)
-
     xCapt += (cos(theta) * dStep);
     yCapt += (sin(theta) * dStep);
   else
-
     xCapt += 0;
     yCapt += 0;
-
   endif
 endif
 
@@ -29,16 +25,12 @@ endif
 if (key == "s")
   tempxCapt = x - (cos(theta) * dStep);
   tempyCapt = y - (sin(theta) * dStep);
-
   if (tempxCapt > 0 && tempxCapt < width && tempyCapt > 0 && tempyCapt < height)
-
     xCapt -= (cos(theta) * dStep);
     yCapt -= (sin(theta) * dStep);
   else
-
     xCapt -= 0;
     yCapt -= 0;
-
   endif
 endif
 

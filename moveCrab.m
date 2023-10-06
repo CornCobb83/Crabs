@@ -15,9 +15,9 @@ yCrab += (sin(theta) * dStep);
 %xCrab += 100;
 %yCrab += 100;
 else
-thetaCapt = theta + dTheta;
-xCrab += (cos(theta) * dStep);
-yCrab += (sin(theta) * dStep);
+thetaCrab = theta + dTheta;
+xCrab += (cos(thetaCrab) * dStep);
+yCrab += (sin(thetaCrab) * dStep);
 endif
 
 endfunction

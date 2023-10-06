@@ -9,20 +9,22 @@ dStep = 50;
 
 xCrab1 = 500;
 yCrab1 = 300;
-thetaCrab1 = -pi/2;
+thetaCrab1 = -pi/6;
 sizeCrab1 = 35;
 dStep1 = 50;
 
 xCrab2 = 1800;
 yCrab2 = 800;
-thetaCrab2 = pi/2;
-sizeCrab2 = 35;
+thetaCrab2 = pi/6;
+%Change size back
+sizeCrab2 = 0;
 dStep2 = 50;
 
 xCrab3 = 300;
 yCrab3 = 1000;
 thetaCrab3 = pi/4;
-sizeCrab3 = 35;
+%Change this back also
+sizeCrab3 = 0;
 dStep3 = 50;
 
 captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
@@ -34,6 +36,7 @@ cmd = "null";
 
 while (cmd != "Q")
 
+if (alive1(xCapt, yCapt, xCrab1, yCrab1))
     % crab1
     for (i = 1 : length(crab1Graphics))
        set(crab1Graphics(i), 'Visible', "off");
@@ -44,6 +47,7 @@ while (cmd != "Q")
 
     %draw new crab
     crab1Graphics = drawCrab(xCrab1, yCrab1, thetaCrab1, sizeCrab1);
+endif
 
     % crab2
     for (i = 1 : length(crab2Graphics))
@@ -68,7 +72,6 @@ while (cmd != "Q")
     crab3Graphics = drawCrab(xCrab3, yCrab3, thetaCrab3, sizeCrab3);
 
     cmd = kbhit();
-
 
     if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
 
