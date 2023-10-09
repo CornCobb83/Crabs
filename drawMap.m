@@ -1,4 +1,4 @@
-function [height,width] = drawMap(imageName)
+function [height,width] = drawMap(imageName, counter)
 %This function draws the background map for the game using the image named imageName
 % It returns the map dimensions base in the supplied image.
 
@@ -19,7 +19,8 @@ img = imread(imageName);
 imshow(imageName);
 
 %put a title on the figure
-title("Crabs");
+%title("Crabs - Score: ");
+title(counter);
 
 %keep the background and plot on top of it
 hold on
