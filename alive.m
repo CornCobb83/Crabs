@@ -1,6 +1,6 @@
 function isAlive = alive (Cx, Cy, C1x, C1y, alive)
 
-if ((abs(Cx - C1x) < 100 && abs(Cy - C1y) < 100) && alive)
+if ((abs(Cx - C1x) < 200 && abs(Cy - C1y) < 200) && alive)
   isAlive = false;
 else
   isAlive = true;

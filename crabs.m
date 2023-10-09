@@ -8,29 +8,13 @@ thetaCapt = -pi/2;
 sizeCapt = 50;
 dStep = 50;
 
-xCrab1 = randi(1000) + 200;
-yCrab1 = 150;
-thetaCrab1 = pi/randi(9);
-sizeCrab1 = 35;
-dStep1 = 50;
-c1alive = true;
-%c1alive = false;
-
-xCrab2 = 1800;
-yCrab2 = randi(1000) + 200;
-thetaCrab2 = pi/randi(9);
-sizeCrab2 = 35;
-dStep2 = 50;
-c2alive = true;
-%c2alive = false;
-
-xCrab3 = 300;
-yCrab3 = randi(1000) + 200;
-thetaCrab3 = pi/randi(9);
-sizeCrab3 = 35;
-dStep3 = 50;
-c3alive = true;
-%c3alive = false;
+%1 = top, 2 = left, 3 = right
+poss = 1;
+[xCrab1, yCrab1, thetaCrab1, sizeCrab1, dStep1, c1alive] = newCrab(poss);
+poss = 2;
+[xCrab2, yCrab2, thetaCrab2, sizeCrab2, dStep2, c2alive] = newCrab(poss);
+poss = 3;
+[xCrab3, yCrab3, thetaCrab3, sizeCrab3, dStep3, c3alive] = newCrab(poss);
 
 captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
 crab1Graphics = drawCrab(xCrab1, yCrab1, thetaCrab1, sizeCrab1);
@@ -41,7 +25,7 @@ cmd = "null";
 
 while (cmd != "Q" )
 
-while (c1alive || c2alive || c3alive)
+%while (c1alive || c2alive || c3alive)
 [xCrab1, yCrab1, thetaCrab1, crab1Graphics, c1alive] = runCrab(xCapt,yCapt,xCrab1,yCrab1,c1alive,crab1Graphics,thetaCrab1,dStep1,mapHeight,mapWidth,sizeCrab1);
 
 [xCrab2, yCrab2, thetaCrab2, crab2Graphics, c2alive] = runCrab(xCapt,yCapt,xCrab2,yCrab2,c2alive,crab2Graphics,thetaCrab2,dStep2,mapHeight,mapWidth,sizeCrab2);
@@ -61,13 +45,17 @@ while (c1alive || c2alive || c3alive)
 
       %draw new captain
       captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
-      counter
-      title(counter);
-    endif
 
-endwhile
+  endif
 
-close all
+if (c1alive || c2alive || c3alive)
+  counter
+  title(counter);
+endif
+
+%endwhile
+
+%close all
 
 endwhile
 
