@@ -67,22 +67,7 @@ while (c1alive || c2alive || c3alive)
 
 endwhile
 
-c1alive = false;
-c2alive = false;
-c3alive = false;
-
-clf
-
-figure(1);
-
-img = imread("Crabbg.png");
-[height,width] = size(img);
-
-imshow("Crabbg.png");
-
-title(counter);
-
-hold on
+close all
 
 endwhile
 
