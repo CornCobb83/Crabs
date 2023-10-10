@@ -20,7 +20,7 @@ imshow(imageName);
 
 %put a title on the figure
 %title("Crabs - Score: ");
-title(counter);
+title(['Lives 3           Number of presses: 0           Crabs collected 0/3'], 'FontSize', 20);
 
 %keep the background and plot on top of it
 hold on

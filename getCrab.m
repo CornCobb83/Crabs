@@ -1,18 +1,5 @@
 function crab = getCrab (s)
 
-%crabPt1 = [crabSize/2; crabSize; 1];
-%crabPt2 = [-crabSize; crabSize; 1];
-%crabPt3 = [-3 * crabSize; crabSize; 1];
-
-%crabPt4 = [-3 * crabSize; -crabSize; 1];
-%crabPt5 = [-crabSize; -crabSize; 1];
-%crabPt6 = [crabSize/2; -crabSize; 1];
-
-%crabPt7 = [ crabSize; -crabSize; 1];
-%crabPt8 = [ 2 *crabSize; -crabSize; 1];
-%crabPt9 = [ 2*crabSize; crabSize; 1];
-%crabPt10 = [ crabSize; crabSize; 1];
-
 %main body
 crabPt1 = [s / 2 ;s ;1 ];
 crabPt2 = [s / 2 ;-s ;1 ];

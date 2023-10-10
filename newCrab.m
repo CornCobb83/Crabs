@@ -1,22 +1,20 @@
-function [xCrab, yCrab, thetaCrab, sizeCrab, dStep, calive] = newCrab (poss)
+function [xCrab, yCrab, thetaCrab, sizeCrab, dStep, calive, ovr] = newCrab ()
 
-if (poss == 1)
-  xCrab = randi(1000) + 200;
-  yCrab = 150;
-endif
-if (poss == 2)
-  xCrab = 300;
-  yCrab = randi(1000) + 200;
-endif
-if (poss == 3)
-  xCrab = 1800;
-  yCrab = randi(1000) + 200;
-endif
+xCrab = randi(1000) + 200;
+yCrab = 1200;
 
-thetaCrab = pi/randi(9);
+dStep = randi(20) + 30;
+
+thetaCrab = -pi/2;
 sizeCrab = 35;
-dStep = 50;
+var = randi(2);
+if (var == 1)
+  dStep = dStep;
+else
+  dStep = dStep * -1;
+endif
 calive = true;
 %calive = false;
+ovr = true;
 
 endfunction
