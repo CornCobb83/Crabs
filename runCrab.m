@@ -13,9 +13,9 @@ if (crabAlive)
     %draw new crab
     crabGraph = drawCrab(xCrab, yCrab, thetaCrab, size);
 elseif (!crabAlive && ovr)
-    for (i = 1 : length(crabGraph))
-       set(crabGraph(i), 'Visible', "off");
-    endfor
+    if isgraphics(crabGraph)
+      delete(crabGraph);
+    endif
 
     ovr = false;
     ccounter += 1;

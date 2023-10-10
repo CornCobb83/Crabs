@@ -14,7 +14,7 @@ var = randi(2);
 %  dpStep = dpStep * -1;
 %endif
 pCrabAlive = true;
-%calive = false;
+%pCrabAlive = false;
 ovr = true;
 
 endfunction

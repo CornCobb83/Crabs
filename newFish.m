@@ -1,4 +1,4 @@
-function [xFish, yFish, thetaFish, sizeFish, dStep, calive, ovr] = newFish (poss)
+function [xFish, yFish, thetaFish, sizeFish, dStep, calive, ovr] = newFish (poss, step)
 
 if (poss == 1)
   xFish = randi(1000) + 200;
@@ -18,7 +18,7 @@ if (thetaFish == pi/2 || thetaFish == 0 || thetaFish == pi/1)
   thetaFish += pi/9;
 endif
 sizeFish = 50;
-dStep = 30;
+dStep = step;
 calive = true;
 %calive = false;
 ovr = true;

@@ -19,8 +19,7 @@ img = imread(imageName);
 imshow(imageName);
 
 %put a title on the figure
-%title("Crabs - Score: ");
-title(['Lives 3           Number of presses: 0           Crabs collected 0/3'], 'FontSize', 20);
+%title(['Lives             Level:             Crabs collected 0/ '], 'FontSize', 20);
 
 %keep the background and plot on top of it
 hold on
