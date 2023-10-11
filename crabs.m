@@ -13,7 +13,7 @@ pCrab3Alive = false;
 
 if (level == 0)
   while (cmd != "1" || cmd != "2" || cmd != "3")
-  title(['Enemy Speed (1) esay | (2) medium | (3) hard'], 'FontSize', 20);
+  title(['Enemy Speed (1) easy | (2) medium | (3) hard'], 'FontSize', 20);
   cmd = kbhit();
 
     if (cmd == "1")
