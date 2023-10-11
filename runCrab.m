@@ -8,7 +8,7 @@ if (crabAlive)
     endif
 
     %move crab
-    [xCrab, dStepC] = moveCrab(xCrab, dStepC, mapW);
+    [xCrab, yCrab, dStepC] = moveCrab(xCrab, yCrab, dStepC, mapW);
 
     %draw new crab
     crabGraph = drawCrab(xCrab, yCrab, thetaCrab, size);

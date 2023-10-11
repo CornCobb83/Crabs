@@ -1,4 +1,4 @@
-function pCrab = getPCrab (s)
+function pCrab = getParaCrab (s)
 
 %main body
 pCrabPt1 = [s / 2 ;s ;1 ];

@@ -1,7 +1,7 @@
 function [xCrab, yCrab, thetaCrab, sizeCrab, dStep, calive, ovr] = newCrab ()
 
 xCrab = randi(1000) + 200;
-yCrab = 1200;
+yCrab = randi(200) + 1000;
 
 dStep = randi(20) + 30;
 
