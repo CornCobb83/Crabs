@@ -1,6 +1,6 @@
-function [xpCrab, ypCrab, thetapCrab, paraCrabGraph, pCrabAlive, dpStepC, ovr, ccounter] = runParaCrab(xC,yC,xpCrab,ypCrab,pCrabAlive,paraCrabGraph,thetapCrab,dpStepC,mapH,mapW,psize, ovr, ccounter)
+function [xpCrab, ypCrab, thetapCrab, paraCrabGraph, pCrabAlive, dpStepC, ovr, ccounter] = runParaCrab(xC,yC,thetaC,xpCrab,ypCrab,pCrabAlive,paraCrabGraph,thetapCrab,dpStepC,mapH,mapW,psize, ovr, ccounter, net)
 
-pCrabAlive = alive(xC, yC, xpCrab, ypCrab, pCrabAlive, ovr);
+pCrabAlive = aliveCrab(xC, yC,thetaC , xpCrab, ypCrab, pCrabAlive, ovr, net);
 if (pCrabAlive)
 
     if isgraphics(paraCrabGraph)

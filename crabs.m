@@ -174,26 +174,6 @@ if (6 - level < 2)
 [xFish6, yFish6, thetaFish6, fish6Graphics, f6alive, ovr6, lives] = runFish(xCapt,yCapt,xFish6,yFish6,f6alive,fish6Graphics,thetaFish6,dStep6,mapHeight,mapWidth,sizeFish6, ovr6, lives);
 endif
 
-%Moving crabs accordingly
-if (6 - level < 6)
-[xCrab1, yCrab1, thetaCrab1, crab1Graphics, c1alive, dStep7, ovr7, ccounter] = runCrab(xCapt,yCapt,xCrab1,yCrab1,c1alive,crab1Graphics,thetaCrab1,dStep7,mapHeight,mapWidth,sizeCrab1, ovr7, ccounter);
-[xCrab2, yCrab2, thetaCrab2, crab2Graphics, c2alive, dStep8, ovr8, ccounter] = runCrab(xCapt,yCapt,xCrab2,yCrab2,c2alive,crab2Graphics,thetaCrab2,dStep8,mapHeight,mapWidth,sizeCrab2, ovr8, ccounter);
-endif
-if (6 - level < 5)
-[xCrab3, yCrab3, thetaCrab3, crab3Graphics, c3alive, dStep9, ovr9, ccounter] = runCrab(xCapt,yCapt,xCrab3,yCrab3,c3alive,crab3Graphics,thetaCrab3,dStep9,mapHeight,mapWidth,sizeCrab3, ovr9, ccounter);
-endif
-
-%Moving parachute crabs accordingly
-if (6 - level < 4)
-[xpCrab1, ypCrab1, thetapCrab1, paraCrab1Graphics, pCrab1Alive, dpStep10, ovr10, ccounter] = runParaCrab(xCapt,yCapt,xpCrab1,ypCrab1,pCrab1Alive,paraCrab1Graphics,thetapCrab1,dpStep10,mapHeight,mapWidth,sizepCrab1, ovr10, ccounter);
-endif
-if (6 - level < 3)
-[xpCrab2, ypCrab2, thetapCrab2, paraCrab2Graphics, pCrab2Alive, dpStep11, ovr11, ccounter] = runParaCrab(xCapt,yCapt,xpCrab2,ypCrab2,pCrab2Alive,paraCrab2Graphics,thetapCrab2,dpStep11,mapHeight,mapWidth,sizepCrab2, ovr11, ccounter);
-endif
-if (6 - level < 2)
-[xpCrab3, ypCrab3, thetapCrab3, paraCrab3Graphics, pCrab3Alive, dpStep12, ovr12, ccounter] = runParaCrab(xCapt,yCapt,xpCrab3,ypCrab3,pCrab3Alive,paraCrab3Graphics,thetapCrab3,dpStep12,mapHeight,mapWidth,sizepCrab3, ovr12, ccounter);
-endif
-
 %Keyboard interactions
     if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
 
@@ -207,7 +187,37 @@ endif
       %draw new captain
       captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
 
-  endif
+endif
+
+%Code for setting collect point to net location
+capt = getCapt(sizeCapt, xCapt, yCapt, thetaCapt);
+R = getRotation(thetaCapt);
+captRotated = R*capt;
+T = getTranslation(xCapt,yCapt);
+capt = T*captRotated;
+net = capt( : , 19);
+net(1, : );
+net(2, : );
+
+%Moving crabs accordingly
+if (6 - level < 6)
+[xCrab1, yCrab1, thetaCrab1, crab1Graphics, c1alive, dStep7, ovr7, ccounter] = runCrab(xCapt,yCapt,thetaCapt,xCrab1,yCrab1,c1alive,crab1Graphics,thetaCrab1,dStep7,mapHeight,mapWidth,sizeCrab1, ovr7, ccounter, net);
+[xCrab2, yCrab2, thetaCrab2, crab2Graphics, c2alive, dStep8, ovr8, ccounter] = runCrab(xCapt,yCapt,thetaCapt,xCrab2,yCrab2,c2alive,crab2Graphics,thetaCrab2,dStep8,mapHeight,mapWidth,sizeCrab2, ovr8, ccounter, net);
+endif
+if (6 - level < 5)
+[xCrab3, yCrab3, thetaCrab3, crab3Graphics, c3alive, dStep9, ovr9, ccounter] = runCrab(xCapt,yCapt,thetaCapt,xCrab3,yCrab3,c3alive,crab3Graphics,thetaCrab3,dStep9,mapHeight,mapWidth,sizeCrab3, ovr9, ccounter, net);
+endif
+
+%Moving parachute crabs accordingly
+if (6 - level < 4)
+[xpCrab1, ypCrab1, thetapCrab1, paraCrab1Graphics, pCrab1Alive, dpStep10, ovr10, ccounter] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab1,ypCrab1,pCrab1Alive,paraCrab1Graphics,thetapCrab1,dpStep10,mapHeight,mapWidth,sizepCrab1, ovr10, ccounter, net);
+endif
+if (6 - level < 3)
+[xpCrab2, ypCrab2, thetapCrab2, paraCrab2Graphics, pCrab2Alive, dpStep11, ovr11, ccounter] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab2,ypCrab2,pCrab2Alive,paraCrab2Graphics,thetapCrab2,dpStep11,mapHeight,mapWidth,sizepCrab2, ovr11, ccounter, net);
+endif
+if (6 - level < 2)
+[xpCrab3, ypCrab3, thetapCrab3, paraCrab3Graphics, pCrab3Alive, dpStep12, ovr12, ccounter] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab3,ypCrab3,pCrab3Alive,paraCrab3Graphics,thetapCrab3,dpStep12,mapHeight,mapWidth,sizepCrab3, ovr12, ccounter, net);
+endif
 
 %Counting lives
 %Lives reduce if captain collides with fish, end game at 3 lives

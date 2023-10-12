@@ -1,6 +1,7 @@
-function [xCrab, yCrab, thetaCrab, crabGraph, crabAlive, dStepC, ovr, ccounter] = runCrab(xC,yC,xCrab,yCrab,crabAlive,crabGraph,thetaCrab,dStepC,mapH,mapW,size, ovr, ccounter)
+function [xCrab, yCrab, thetaCrab, crabGraph, crabAlive, dStepC, ovr, ccounter] = runCrab(xC,yC,thetaC, xCrab,yCrab,crabAlive,crabGraph,thetaCrab,dStepC,mapH,mapW,size, ovr, ccounter, captainNet)
 
-crabAlive = alive(xC, yC, xCrab, yCrab, crabAlive, ovr);
+
+crabAlive = aliveCrab(xC, yC, thetaC, xCrab, yCrab, crabAlive, ovr, captainNet);
 if (crabAlive)
 
     if isgraphics(crabGraph)

@@ -1,7 +1,7 @@
 function runGame ()
 
 level = 0;
-lives = 3;
+lives = 100;
 step = 0;
 words = 'null';
 
