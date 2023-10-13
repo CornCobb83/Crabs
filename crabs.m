@@ -237,6 +237,4 @@ end
 
 endwhile
 
-%close all
-
 endfunction
