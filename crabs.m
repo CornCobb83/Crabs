@@ -84,9 +84,7 @@ endif
 %Creating crabs
 if (6 - level < 6)
 [xCrab1, yCrab1, thetaCrab1, sizeCrab1, dStep7, c1alive, ovr7] = newCrab();
-c1alive = true;
 [xCrab2, yCrab2, thetaCrab2, sizeCrab2, dStep8, c2alive, ovr8] = newCrab();
-c2alive = true;
 numCrabs = 2;
 endif
 if (6 - level < 5)
@@ -96,15 +94,15 @@ endif
 
 %Create parachute crabs
 if (6 - level < 4);
-[xpCrab1, ypCrab1, thetapCrab1, sizepCrab1, dpStep10, pCrab1Alive, ovr10] = newPCrab();
+[xpCrab1, ypCrab1, thetapCrab1, sizepCrab1, dpStep10, pCrab1Alive, ovr10, sc1] = newPCrab();
 numCrabs = 4;
 endif
 if (6 - level < 3)
-[xpCrab2, ypCrab2, thetapCrab2, sizepCrab2, dpStep11, pCrab2Alive, ovr11] = newPCrab();
+[xpCrab2, ypCrab2, thetapCrab2, sizepCrab2, dpStep11, pCrab2Alive, ovr11, sc2] = newPCrab();
 numCrabs = 5;
 endif
 if (6 - level < 2)
-[xpCrab3, ypCrab3, thetapCrab3, sizepCrab3, dpStep12, pCrab3Alive, ovr12] = newPCrab();
+[xpCrab3, ypCrab3, thetapCrab3, sizepCrab3, dpStep12, pCrab3Alive, ovr12, sc3] = newPCrab();
 numCrabs = 6;
 endif
 
@@ -210,13 +208,13 @@ endif
 
 %Moving parachute crabs accordingly
 if (6 - level < 4)
-[xpCrab1, ypCrab1, thetapCrab1, paraCrab1Graphics, pCrab1Alive, dpStep10, ovr10, ccounter] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab1,ypCrab1,pCrab1Alive,paraCrab1Graphics,thetapCrab1,dpStep10,mapHeight,mapWidth,sizepCrab1, ovr10, ccounter, net);
+[xpCrab1, ypCrab1, thetapCrab1, paraCrab1Graphics, pCrab1Alive, dpStep10, ovr10, ccounter, sc1] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab1,ypCrab1,pCrab1Alive,paraCrab1Graphics,thetapCrab1,dpStep10,mapHeight,mapWidth,sizepCrab1, ovr10, ccounter, net, sc1);
 endif
 if (6 - level < 3)
-[xpCrab2, ypCrab2, thetapCrab2, paraCrab2Graphics, pCrab2Alive, dpStep11, ovr11, ccounter] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab2,ypCrab2,pCrab2Alive,paraCrab2Graphics,thetapCrab2,dpStep11,mapHeight,mapWidth,sizepCrab2, ovr11, ccounter, net);
+[xpCrab2, ypCrab2, thetapCrab2, paraCrab2Graphics, pCrab2Alive, dpStep11, ovr11, ccounter, sc2] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab2,ypCrab2,pCrab2Alive,paraCrab2Graphics,thetapCrab2,dpStep11,mapHeight,mapWidth,sizepCrab2, ovr11, ccounter, net, sc2);
 endif
 if (6 - level < 2)
-[xpCrab3, ypCrab3, thetapCrab3, paraCrab3Graphics, pCrab3Alive, dpStep12, ovr12, ccounter] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab3,ypCrab3,pCrab3Alive,paraCrab3Graphics,thetapCrab3,dpStep12,mapHeight,mapWidth,sizepCrab3, ovr12, ccounter, net);
+[xpCrab3, ypCrab3, thetapCrab3, paraCrab3Graphics, pCrab3Alive, dpStep12, ovr12, ccounter, sc3] = runParaCrab(xCapt,yCapt,thetaCapt,xpCrab3,ypCrab3,pCrab3Alive,paraCrab3Graphics,thetapCrab3,dpStep12,mapHeight,mapWidth,sizepCrab3, ovr12, ccounter, net, sc3);
 endif
 
 %Counting lives
