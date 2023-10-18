@@ -1,4 +1,4 @@
-function [lives, step, words] = crabs (level, lives, step, words)
+function [lives, step, words, level] = crabs (level, lives, step, words)
 counter = 0;
 ccounter = 0;
 numCrabs = 2;
@@ -19,8 +19,14 @@ fish6alive = false;
 [mapHeight , mapWidth] = drawMap( "BGImage.png", counter );
 
 if (level == 0)
-  while (cmd != "1" || cmd != "2" || cmd != "3")
-  title(['Enemy Speed (1) easy | (2) medium | (3) hard'], 'FontSize', 20);
+  while (cmd != "1" || cmd != "2" || cmd != "3" || cmd != "4")
+    zout = 0;
+
+    if (zout == 0)
+      title(['Enemy Speed (1) easy | (2) medium | (3) hard | (4) Dev Mode'], 'FontSize', 20);
+    else
+      title(['Enemy Speed (1) easy | (2) medium | (3) hard'], 'FontSize', 20);
+    endif
   cmd = kbhit();
 
     if (cmd == "1")
@@ -42,7 +48,42 @@ if (level == 0)
       step = 100;
       words = 'HARD';
     break
+  endif
+
+  if (zout == 0)
+  if (cmd == "4")
+    title(['Levels | (1) | (2) | (3) | (4) | (5)'], 'FontSize', 20);
+    cmd = kbhit();
+    if (cmd  == "1")
+      level = 1;
+      fprintf('Level 1 selected\n');
+    elseif (cmd == "2")
+      level = 2;
+      fprintf('Level 2 selected\n');
+    elseif (cmd == "3")
+      level = 3;
+      fprintf('Level 3 selected\n');
+    elseif (cmd == "4")
+      level = 4;
+      fprintf('Level 4 selected\n');
+    elseif (cmd == "5")
+      level = 5;
+      fprintf('Level 5 selected\n');
+    else
+      level = 1;
+      fprintf('Level 1 defaulted\n');
     endif
+    title(['How many lives? (1 - 9)'], 'FontSize', 20);
+    cmd = kbhit();
+    if (cmd == "1" || cmd == "2" || cmd == "3" || cmd == "4" || cmd == "5" || cmd == "6" || cmd == "7" || cmd == "8" || cmd == "9")
+      lives = str2num(cmd)
+      zout += 1;
+    else
+      lives = 5
+      zout += 1;
+    endif
+  endif
+  endif
 
     if (cmd == "Q")
       lives = 0;
@@ -294,6 +335,9 @@ else
   fprintf('You Lost! You made it to level %d!\n', level);
   break
 end
+
+%fflush(stdout);
+%pause(.05);
 
 endwhile
 
