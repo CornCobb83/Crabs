@@ -1,5 +1,9 @@
 function pCrab = getParaCrab (s)
 
+if (iscell(s))
+  s = cell2mat(s);
+endif
+
 %main body
 pCrabPt1 = [s / 2 ;s ;1 ];
 pCrabPt2 = [s / 2 ;-s ;1 ];

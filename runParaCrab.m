@@ -1,6 +1,14 @@
-function [xpCrab, ypCrab, thetapCrab, paraCrabGraph, pCrabAlive, dpStepC, ovr, ccounter, sc] = runParaCrab(xC,yC,thetaC,xpCrab,ypCrab,pCrabAlive,paraCrabGraph,thetapCrab,dpStepC,mapH,mapW,psize, ovr, ccounter, net, sc)
+function [xpCrab, ypCrab, thetapCrab, paraCrabGraph, pCrabAlive, dpStepC, ovr, sc, paraCrabsAlive] = runParaCrab(xC,yC,thetaC,xpCrab,ypCrab,pCrabAlive,paraCrabGraph,thetapCrab,dpStepC,mapH,mapW,psize,ovr,xNet, yNet,sc, paraCrabsAlive)
 
-pCrabAlive = aliveCrab(xC, yC,thetaC , xpCrab, ypCrab, pCrabAlive, ovr, net);
+pCrabAlive = aliveCrab(xC, yC,thetaC , xpCrab, ypCrab, pCrabAlive, ovr, xNet, yNet);
+
+if (iscell(pCrabAlive))
+  pCrabAlive = cell2mat(pCrabAlive);
+endif
+if (iscell(ovr))
+  ovr = cell2mat(ovr);
+endif
+
 if (pCrabAlive)
 
     if isgraphics(paraCrabGraph)
@@ -12,13 +20,14 @@ if (pCrabAlive)
 
     %draw new crab
     paraCrabGraph = drawParaCrab(xpCrab, ypCrab, thetapCrab, psize);
-elseif (!pCrabAlive && ovr)
-    for (i = 1 : length(paraCrabGraph))
-       set(paraCrabGraph(i), 'Visible', "off");
-    endfor
+
+elseif (pCrabAlive == false && ovr == true)
+    if isgraphics(crabGraph)
+      delete(crabGraph);
+    endif
 
     ovr = false;
-    ccounter += 1;
+    paraCrabsAlive -= 1;
 else
     ovr = false;
 

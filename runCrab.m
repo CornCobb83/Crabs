@@ -1,6 +1,6 @@
-function [xCrab, yCrab, thetaCrab, crabGraph, sizeCrab, dStepC, crabAlive, ovr, crabsAlive] = runCrab(xC,yC,xCrab,yCrab,crabAlive,crabGraph,thetaCrab,dStepC,mapH,mapW,sizeCrab,ovr,captainNet,crabsAlive)
+function [xCrab, yCrab, thetaCrab, crabGraph, sizeCrab, dStepC, crabAlive, ovr, crabsAlive] = runCrab(xC,yC,xCrab,yCrab,crabAlive,crabGraph,thetaCrab,dStepC,mapH,mapW,sizeCrab,ovr,xNet,yNet,crabsAlive)
 
-crabAlive = aliveCrab(xC, yC, thetaCrab, xCrab, yCrab, crabAlive, ovr, captainNet);
+crabAlive = aliveCrab(xC, yC, thetaCrab, xCrab, yCrab, crabAlive, ovr, xNet, yNet);
 
 if (iscell(crabAlive))
   crabAlive = cell2mat(crabAlive);

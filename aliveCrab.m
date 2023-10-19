@@ -1,4 +1,4 @@
-function isAlive = aliveCrab (Cx, Cy, thetaC, C1x, C1y, alive, ovr, net)
+function isAlive = aliveCrab (Cx, Cy, thetaC, C1x, C1y, alive, ovr, xNet, yNet)
 
 if (iscell(C1x))
   C1x = cell2mat(C1x);
@@ -12,8 +12,14 @@ endif
 if (iscell(alive))
   alive = cell2mat(alive);
 endif
+if (iscell(xNet))
+  xNet = cell2mat(xNet);
+endif
+if (iscell(yNet))
+  yNet = cell2mat(yNet);
+endif
 
-if (((abs(net(1, : ) - C1x) < 100 && abs(net(2, : ) - C1y) < 100) && alive) || ovr == false)
+if (((abs(xNet - C1x) < 100 && abs(yNet - C1y) < 100) && alive) || ovr == false)
   isAlive = false;
 else
   isAlive = true;

@@ -1,31 +1,41 @@
-function paraCrabGraphics = drawParaCrab (xpCrab , ypCrab , thetapCrab , sizepCrab)
+function paraCrabGraphics = drawParaCrab (xCrab , yCrab , thetaCrab , sizeCrab)
 
-pCrab = getParaCrab(sizepCrab);
+if (iscell(xCrab))
+  xCrab = cell2mat(xCrab);
+endif
+if (iscell(yCrab))
+  yCrab = cell2mat(yCrab);
+endif
+if (iscell(thetaCrab))
+  thetaCrab = cell2mat(thetaCrab);
+endif
 
-R = getRotation(thetapCrab);
+Crab = getParaCrab(sizeCrab);
 
-pCrabRotated = R * pCrab;
+R = getRotation(thetaCrab);
 
-T = getTranslation(xpCrab,ypCrab);
-pCrab = T * pCrabRotated;
+CrabRotated = R * Crab;
 
-pt1=pCrab( : , 1);
-pt2=pCrab( : , 2);
-pt3=pCrab( : , 3);
-pt4=pCrab( : , 4);
-pt5=pCrab( : , 5);
-pt6=pCrab( : , 6);
-pt7=pCrab( : , 7);
-pt8=pCrab( : , 8);
-pt9=pCrab( : , 9);
-pt10=pCrab( : , 10);
-pt11=pCrab( : , 11);
-pt12=pCrab( : , 12);
-pt13=pCrab( : , 13);
-pt14=pCrab( : , 14);
-pt15=pCrab( : , 15);
-pt16=pCrab( : , 16);
-pt17=pCrab( : , 17);
+T = getTranslation(xCrab,yCrab);
+Crab = T * CrabRotated;
+
+pt1=Crab( : , 1);
+pt2=Crab( : , 2);
+pt3=Crab( : , 3);
+pt4=Crab( : , 4);
+pt5=Crab( : , 5);
+pt6=Crab( : , 6);
+pt7=Crab( : , 7);
+pt8=Crab( : , 8);
+pt9=Crab( : , 9);
+pt10=Crab( : , 10);
+pt11=Crab( : , 11);
+pt12=Crab( : , 12);
+pt13=Crab( : , 13);
+pt14=Crab( : , 14);
+pt15=Crab( : , 15);
+pt16=Crab( : , 16);
+pt17=Crab( : , 17);
 
 paraCrabGraphics(1) = drawLine(pt1 , pt2 , "r");
 paraCrabGraphics(2) = drawLine(pt2 , pt3 , "r");
