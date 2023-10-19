@@ -1,12 +1,22 @@
 function fishGraphics = drawFish (xFish , yFish , thetaFish , sizeFish)
 
+if (iscell(xFish))
+  xFish = cell2mat(xFish);
+endif
+if (iscell(yFish))
+yFish = cell2mat(yFish);
+endif
+if (iscell(thetaFish))
+thetaFish = cell2mat(thetaFish);
+endif
+
 fish = getFish(sizeFish);
 
-R = getRotation(thetaFish);
+R = [cos(thetaFish) -sin(thetaFish) 0; sin(thetaFish) cos(thetaFish) 0; 0 0 1];
 
 fishRotated = R * fish;
 
-T = getTranslation(xFish,yFish);
+T = [1 0 xFish; 0 1 yFish; 0 0 1];
 fish = T * fishRotated;
 
 pt1=fish( : , 1);

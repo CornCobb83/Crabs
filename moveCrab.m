@@ -1,18 +1,25 @@
-function [xCrab, yCrab, dStep] = moveCrab (x, y, dStep, width)
+function [xCrab, yCrab, dStep] = moveCrab (xCrab, yCrab, dStep, width)
 
-xCrab = x;
-yCrab = y;
+if (iscell(xCrab))
+  xCrab = cell2mat(xCrab);
+endif
+if (iscell(yCrab))
+  yCrab = cell2mat(yCrab);
+endif
+if (iscell(dStep))
+  dStep = cell2mat(dStep);
+endif
 
-xtemp = x + dStep;
+xCrabtemp = xCrab + dStep;
 
-%Left side boundary
-if (xtemp < 100)
+%Left side boundaryCrab
+if (xCrabtemp < 100)
   dStep *= (-1);
   xCrab += dStep;
   yCrab = randi(300) + 900;
 
-  %right side boundary
-elseif (xtemp > 1950)
+  %right side boundaryCrab
+elseif (xCrabtemp > 1950)
   dStep *= (-1);
   xCrab += dStep;
   yCrab = randi(300) + 900;

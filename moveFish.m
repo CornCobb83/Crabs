@@ -1,22 +1,36 @@
-function [xFish, yFish, thetaFish] = moveFish (x, y, theta, dStep, height, width)
+function [xFish, yFish, thetaFish] = moveFish (xFish, yFish, thetaFish, dStep, height, width)
 
-xFish = x;
-yFish = y;
-thetaFish = theta;
+if (iscell(xFish))
+  xFish = cell2mat(xFish);
+endif
+if (iscell(yFish))
+yFish = cell2mat(yFish);
+endif
+if (iscell(thetaFish))
+thetaFish = cell2mat(thetaFish);
+endif
+if (iscell(dStep))
+dStep = cell2mat(dStep);
+endif
 
-dTheta = -pi/2;
+dthetaFish = -pi/2;
 
-xtemp = x + (cos(theta) * dStep);
-ytemp = y + (sin(theta) * dStep);
+xFishtemp = xFish + (cos(thetaFish) * dStep);
+yFishtemp = yFish + (sin(thetaFish) * dStep);
 
-if (xtemp > 50 && xtemp < width - 50 && ytemp > 50 && ytemp < height - 50)
-  xFish += (cos(theta) * dStep);
-  yFish += (sin(theta) * dStep);
-
-else
-  thetaFish = theta + dTheta;
+if (xFishtemp > 50 && xFishtemp < width - 50 && yFishtemp > 50 && yFishtemp < height - 50)
   xFish += (cos(thetaFish) * dStep);
   yFish += (sin(thetaFish) * dStep);
+
+else
+  thetaFish = thetaFish + dthetaFish;
+  xFish += (cos(thetaFish) * dStep);
+  yFish += (sin(thetaFish) * dStep);
+
 endif
+
+%xFish = cell2mat(xFish);
+%yFish = cell2mat(yFish);
+%thetaFish = cell2mat(thetaFish);
 
 endfunction

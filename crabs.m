@@ -1,20 +1,11 @@
 function [lives, step, words, level] = crabs (level, lives, step, words)
 counter = 0;
-ccounter = 0;
-numCrabs = 2;
 cmd = "null";
+numFish = 0;
+numCrabs = 0;
 
-c3alive = false;
-pCrab1Alive = false;
 pCrab2Alive = false;
 pCrab3Alive = false;
-
-fish1alive = false;
-fish2alive = false;
-fish3alive = false;
-fish4alive = false;
-fish5alive = false;
-fish6alive = false;
 
 [mapHeight , mapWidth] = drawMap( "BGImage.png", counter );
 
@@ -104,51 +95,60 @@ dStep = 50;
 
 %Creating fish
 %Level 1
-if (6 - level < 6)
-poss = 1;
-[xFish1, yFish1, thetaFish1, sizeFish1, dStep1, f1alive, ovr1] = newFish(poss, step);
-endif
-
-%level 2
-if (6 - level < 5)
-poss = 2;
-[xFish2, yFish2, thetaFish2, sizeFish2, dStep2, f2alive, ovr2] = newFish(poss, step);
-endif
-
-%Level 3
-if (6 - level < 4)
-poss = 3;
-[xFish3, yFish3, thetaFish3, sizeFish3, dStep3, f3alive, ovr3] = newFish(poss, step);
-endif
-
-%Level 4
-if (6 - level < 3)
-poss = 3;
-[xFish4, yFish4, thetaFish4, sizeFish4, dStep4, f4alive, ovr4] = newFish(poss, step);
-endif
-
-%Level 5
-if (6 - level < 2)
-poss = 2;
-[xFish5, yFish5, thetaFish5, sizeFish5, dStep5, f5alive, ovr5] = newFish(poss, step);
-poss = 1;
-[xFish6, yFish6, thetaFish6, sizeFish6, dStep6, f6alive, ovr6] = newFish(poss, step);
-endif
-
-
-%Creating crabs
-%Level 1
-if (6 - level < 6)
-[xCrab1, yCrab1, thetaCrab1, sizeCrab1, dStep7, c1alive, ovr7] = newCrab();
-[xCrab2, yCrab2, thetaCrab2, sizeCrab2, dStep8, c2alive, ovr8] = newCrab();
+if (level == 1)
+numFish = 1;
 numCrabs = 2;
 endif
 
-%Level 2
-if (6 - level < 5)
-[xCrab3, yCrab3, thetaCrab3, sizeCrab3, dStep9, c3alive, ovr9] = newCrab();
+%level 2
+if (level == 2)
+numFish = 2;
 numCrabs = 3;
 endif
+
+%Level 3
+if (level == 3)
+numFish = 3;
+numCrabs = 3;
+endif
+
+%Level 4
+if (level == 4)
+numFish = 4;
+numCrabs = 3;
+endif
+
+%Level 5
+if (level == 5)
+numFish = 6;
+numCrabs = 3;
+endif
+
+crabsAlive = numCrabs;
+
+% Define fish variables
+vars = {'xFish', 'yFish', 'thetaFish', 'sizeFish', 'dStep', 'falive', 'ovr'};
+x = numFish;
+fishVars = varArray(vars, x);
+
+%creating fish
+for i = 1:numFish
+  mult = (i-1) * 7;
+  [fishVars(mult+1), fishVars(mult+2), fishVars(mult+3), fishVars(mult+4), fishVars(mult+5), fishVars(mult+6), fishVars(mult+7)] = newFish(i, step);
+  fishGraphics{i} = drawFish(fishVars(mult+1), fishVars(mult+2), fishVars(mult+3), fishVars(mult+4));
+endfor
+
+% Define crab variables
+vars = {'xCrab', 'yCrab', 'thetaCrab', 'sizeCrab', 'dStep', 'calive', 'ovr'};
+x = numCrabs;
+crabVars = varArray(vars, x);
+
+% Creating crabs
+for i = 1:numCrabs
+  mult = (i-1) * 7;
+  [crabVars(mult+1), crabVars(mult+2), crabVars(mult+3), crabVars(mult+4), crabVars(mult+5), crabVars(mult+6), crabVars(mult+7)] = newCrab();
+  crabGraphics{i} = drawCrab(crabVars(mult+1), crabVars(mult+2), crabVars(mult+3), crabVars(mult+4));
+endfor
 
 %Creating parachute crabs
 %Level 3
@@ -173,45 +173,6 @@ endif
 
 %Plotting captain
 captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
-
-%Plotting fish
-%Level 1
-if (6 - level < 6)
-fish1Graphics = drawFish(xFish1, yFish1, thetaFish1, sizeFish1);
-endif
-
-%Level 2
-if (6 - level < 5)
-fish2Graphics = drawFish(xFish2, yFish2, thetaFish2, sizeFish2);
-endif
-
-%Level 3
-if (6 - level < 4)
-fish3Graphics = drawFish(xFish3, yFish3, thetaFish3, sizeFish3);
-endif
-
-%Level 4
-if (6 - level < 3)
-fish4Graphics = drawFish(xFish4, yFish4, thetaFish4, sizeFish4);
-endif
-
-%Level 5
-if (6 - level < 2)
-fish5Graphics = drawFish(xFish5, yFish5, thetaFish5, sizeFish5);
-fish6Graphics = drawFish(xFish6, yFish6, thetaFish6, sizeFish6);
-endif
-
-%Plotting crabs
-%Level 1
-if (6 - level < 6)
-crab1Graphics = drawCrab(xCrab1, yCrab1, thetaCrab1, sizeCrab1);
-crab2Graphics = drawCrab(xCrab2, yCrab2, thetaCrab2, sizeCrab2);
-endif
-
-%Level 2
-if (6 - level < 5)
-crab3Graphics = drawCrab(xCrab3, yCrab3, thetaCrab3, sizeCrab3);
-endif
 
 %Plotting parachute crabs
 %Level 3
@@ -266,43 +227,18 @@ net(1, : );
 net(2, : );
 
 %Moving fish accordingly
-%Level 1
-if (6 - level < 6)
-[xFish1, yFish1, thetaFish1, fish1Graphics, f1alive, ovr1, lives] = runFish(xCapt,yCapt,xFish1,yFish1,f1alive,fish1Graphics,thetaFish1,dStep1,mapHeight,mapWidth,sizeFish1, ovr1, lives);
-endif
 
-%Level 2
-if (6 - level < 5)
-[xFish2, yFish2, thetaFish2, fish2Graphics, f2alive, ovr2, lives] = runFish(xCapt,yCapt,xFish2,yFish2,f2alive,fish2Graphics,thetaFish2,dStep2,mapHeight,mapWidth,sizeFish2, ovr2, lives);
-endif
-
-%Level 3
-if (6 - level < 4)
-[xFish3, yFish3, thetaFish3, fish3Graphics, f3alive, ovr3, lives] = runFish(xCapt,yCapt,xFish3,yFish3,f3alive,fish3Graphics,thetaFish3,dStep3,mapHeight,mapWidth,sizeFish3, ovr3, lives);
-endif
-
-%Level 4
-if (6 - level < 3)
-[xFish4, yFish4, thetaFish4, fish4Graphics, f4alive, ovr4, lives] = runFish(xCapt,yCapt,xFish4,yFish4,f4alive,fish4Graphics,thetaFish4,dStep4,mapHeight,mapWidth,sizeFish4, ovr4, lives);
-endif
-
-%Level 5
-if (6 - level < 2)
-[xFish5, yFish5, thetaFish5, fish5Graphics, f5alive, ovr5, lives] = runFish(xCapt,yCapt,xFish5,yFish5,f5alive,fish5Graphics,thetaFish5,dStep5,mapHeight,mapWidth,sizeFish5, ovr5, lives);
-[xFish6, yFish6, thetaFish6, fish6Graphics, f6alive, ovr6, lives] = runFish(xCapt,yCapt,xFish6,yFish6,f6alive,fish6Graphics,thetaFish6,dStep6,mapHeight,mapWidth,sizeFish6, ovr6, lives);
-endif
+for i = 1:numFish
+  mult = (i-1) * 7;
+  [fishVars(mult+1), fishVars(mult+2), fishVars(mult+3), fishGraphics{i}, fishVars(mult+6), fishVars(mult+7), lives] = runFish(xCapt,yCapt,fishVars(mult+1),fishVars(mult+2),fishVars(mult+6),fishGraphics{i},fishVars(mult+3),fishVars(mult+5),mapHeight,mapWidth,fishVars(mult+4), fishVars(mult+7), lives);
+endfor
 
 %Moving crabs accordingly
-%Level 1
-if (6 - level < 6)
-[xCrab1, yCrab1, thetaCrab1, crab1Graphics, c1alive, dStep7, ovr7, ccounter] = runCrab(xCapt,yCapt,thetaCapt,xCrab1,yCrab1,c1alive,crab1Graphics,thetaCrab1,dStep7,mapHeight,mapWidth,sizeCrab1, ovr7, ccounter, net);
-[xCrab2, yCrab2, thetaCrab2, crab2Graphics, c2alive, dStep8, ovr8, ccounter] = runCrab(xCapt,yCapt,thetaCapt,xCrab2,yCrab2,c2alive,crab2Graphics,thetaCrab2,dStep8,mapHeight,mapWidth,sizeCrab2, ovr8, ccounter, net);
-endif
 
-%Level 2
-if (6 - level < 5)
-[xCrab3, yCrab3, thetaCrab3, crab3Graphics, c3alive, dStep9, ovr9, ccounter] = runCrab(xCapt,yCapt,thetaCapt,xCrab3,yCrab3,c3alive,crab3Graphics,thetaCrab3,dStep9,mapHeight,mapWidth,sizeCrab3, ovr9, ccounter, net);
-endif
+for i = 1:numCrabs
+  mult = (i-1) * 7;
+  [crabVars(mult+1), crabVars(mult+2), crabVars(mult+3), crabGraphics{i}, crabVars(mult+4), crabVars(mult+5), crabVars(mult+6), crabVars(mult+7), crabsAlive] = runCrab(xCapt,yCapt,crabVars(mult+1),crabVars(mult+2),crabVars(mult+6),crabGraphics{i},crabVars(mult+3),crabVars(mult+5),mapHeight,mapWidth,crabVars(mult+4), crabVars(mult+7), net, crabsAlive);
+endfor
 
 %Moving parachute crabs accordingly
 %Level 3
@@ -322,9 +258,13 @@ endif
 
 %Counting lives
 %Lives reduce if captain collides with fish, end game at 3 lives
-if (lives > 0) && (c1alive || c2alive || c3alive || pCrab1Alive || pCrab2Alive || pCrab3Alive)
-  ccounter;
-  title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str(ccounter) '/' num2str(numCrabs)], 'FontSize', 30);
+
+if (iscell(crabsAlive))
+  crabsAlive = cell2mat(crabsAlive);
+endif
+
+if (lives > 0) && (crabsAlive > 0 || pCrab2Alive || pCrab3Alive)
+  title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str((numCrabs) - crabsAlive) '/' num2str(numCrabs)], 'FontSize', 30);
 elseif (lives > 0 && level != 5)
   fprintf('You Beat Level %d with %d lives remaining!\n', level, lives);
   break

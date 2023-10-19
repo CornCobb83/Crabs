@@ -1,5 +1,9 @@
 function crab = getCrab (s)
 
+if (iscell(s))
+  s = cell2mat(s);
+endif
+
 %main body
 crabPt1 = [s / 2 ;s ;1 ];
 crabPt2 = [s / 2 ;-s ;1 ];

@@ -1,8 +1,18 @@
 function crabGraphics = drawCrab (xCrab , yCrab , thetaCrab , sizeCrab)
 
+if (iscell(xCrab))
+  xCrab = cell2mat(xCrab);
+endif
+if (iscell(yCrab))
+  yCrab = cell2mat(yCrab);
+endif
+if (iscell(thetaCrab))
+  thetaCrab = cell2mat(thetaCrab);
+endif
+
 crab = getCrab(sizeCrab);
 
-R = getRotation(thetaCrab);
+R = [cos(thetaCrab) -sin(thetaCrab) 0; sin(thetaCrab) cos(thetaCrab) 0; 0 0 1];
 
 crabRotated = R * crab;
 
