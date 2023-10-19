@@ -158,7 +158,7 @@ ParaCrabVars = varArray(vars, x);
 
 % Creating parachute crabs
 for i = 1:numParaCrabs
-  mult = (i-1) * 7;
+  mult = (i-1) * 8;
   [ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), ParaCrabVars(mult+4), ParaCrabVars(mult+5), ParaCrabVars(mult+6), ParaCrabVars(mult+7), ParaCrabVars(mult+8)] = newPCrab();
   paraCrabGraphics{i} = drawParaCrab(ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), ParaCrabVars(mult+4));
 endfor
@@ -177,7 +177,7 @@ counter += 1;
 
 
 %Keyboard interactions
-    if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
+if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
 
     if isgraphics(captainGraphics)
       delete(captainGraphics);
@@ -225,7 +225,7 @@ for i = 1:numParaCrabs
 endfor
 
 %Counting lives
-%Lives reduce if captain collides with fish, end game at 3 lives
+%Lives reduce if captain collides with fish, end game
 
 if (iscell(crabsAlive))
   crabsAlive = cell2mat(crabsAlive);

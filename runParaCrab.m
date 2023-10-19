@@ -22,8 +22,8 @@ if (pCrabAlive)
     paraCrabGraph = drawParaCrab(xpCrab, ypCrab, thetapCrab, psize);
 
 elseif (pCrabAlive == false && ovr == true)
-    if isgraphics(crabGraph)
-      delete(crabGraph);
+    if isgraphics(paraCrabGraph)
+      delete(paraCrabGraph);
     endif
 
     ovr = false;
