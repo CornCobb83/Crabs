@@ -91,8 +91,6 @@ thetaCapt = -pi/2;
 sizeCapt = 50;
 dStep = 50;
 
-%1 = top, 2 = left, 3 = right
-
 %Creating fish
 %Level 1
 if (level == 1)

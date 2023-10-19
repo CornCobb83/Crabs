@@ -1,5 +1,7 @@
 function [xFish, yFish, thetaFish, sizeFish, dStep, calive, ovr] = newFish (poss, step)
 
+%1 = top, 2 = left, 3 = right
+
 if (mod(poss, 3) == 0)
   xFish = randi(1000) + 200;
   yFish = 150;
