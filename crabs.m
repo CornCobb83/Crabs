@@ -141,14 +141,15 @@ if (lives > 0) && (crabsAlive > 0 || paraCrabsAlive > 0)
     title([words '           Lives ' num2str(lives) '           CUSTOM           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
   endif
 elseif (lives > 0 && level == 10)
-  fprintf('You beat your level with %d lives remaining!\n', lives);
+  fprintf('You beat your custom level with %d lives remaining!\n', lives);
   level += 1;
   break
 elseif (lives > 0 && level != 9)
   fprintf('You Beat Level %d with %d lives remaining!\n', level, lives);
   break
 elseif (lives > 0 && level == 9)
-  fprintf('You Won on %s difficulty\n', words);
+  fprintf('You beat the game on %s difficulty\n', words);
+  level = 11;
   break
 else
   if (level != 10)
