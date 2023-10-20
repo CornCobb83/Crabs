@@ -167,29 +167,7 @@ endfor
 captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
 
 %MOVEMENT
-while (cmd != "Q" && level != 0)
-cmd = kbhit();
-if (cmd == "Q")
-  lives = 0;
-  close all
-endif
-counter += 1;
-
-
-%Keyboard interactions
-if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
-
-    if isgraphics(captainGraphics)
-      delete(captainGraphics);
-    endif
-
-      %move captain
-      [xCapt, yCapt, thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt, dStep, mapHeight, mapWidth);
-
-      %draw new captain
-      captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
-
-endif
+while (true && level != 0)
 
 %Code for setting collect point to net location
 capt = getCapt(sizeCapt, xCapt, yCapt, thetaCapt);
@@ -224,6 +202,28 @@ for i = 1:numParaCrabs
   [ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), paraCrabGraphics{i}, ParaCrabVars(mult+6), ParaCrabVars(mult+5), ParaCrabVars(mult+7), ParaCrabVars(mult+8), paraCrabsAlive] = runParaCrab(xCapt,yCapt, thetaCapt, ParaCrabVars(mult+1),ParaCrabVars(mult+2),ParaCrabVars(mult+6),paraCrabGraphics{i},ParaCrabVars(mult+3),ParaCrabVars(mult+5),mapHeight,mapWidth,ParaCrabVars(mult+4), ParaCrabVars(mult+7),xNet, yNet,ParaCrabVars(mult+8),paraCrabsAlive);
 endfor
 
+cmd = kbhit(1);
+
+if (cmd == "Q")
+  lives = 0;
+  close all
+endif
+
+%Keyboard interactions
+if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
+
+    if isgraphics(captainGraphics)
+      delete(captainGraphics);
+    endif
+
+      %move captain
+      [xCapt, yCapt, thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt, dStep, mapHeight, mapWidth);
+
+      %draw new captain
+      captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
+
+endif
+
 %Counting lives
 %Lives reduce if captain collides with fish, end game
 
@@ -242,10 +242,10 @@ elseif (lives > 0 && level == 5)
 else
   fprintf('You Lost! You made it to level %d!\n', level);
   break
-end
+endif
 
-%fflush(stdout);
-%pause(.05);
+fflush(stdout);
+pause(.05);
 
 endwhile
 
