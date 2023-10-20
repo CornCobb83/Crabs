@@ -1,4 +1,4 @@
-function isAlive = alive (Cx, Cy, C1x, C1y, alive, ovr)
+function isAlive = alive (Cx, Cy, C1x, C1y, alive, ovr, dist)
 
 if (iscell(C1x))
   C1x = cell2mat(C1x);
@@ -16,7 +16,7 @@ endif
 ovr;
 alive;
 
-if (((abs(Cx - C1x) < 150 && abs(Cy - C1y) < 150) && alive) || ovr == false)
+if (((abs(Cx - C1x) < dist && abs(Cy - C1y) < dist) && alive) || ovr == false)
   isAlive = false;
 else
   isAlive = true;

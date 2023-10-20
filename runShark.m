@@ -1,6 +1,6 @@
-function [xFish, yFish, thetaFish, fishGraph, fishAlive, ovr, lives] = runFish(xF,yF,xFish,yFish,fishAlive,fishGraph,thetaFish,dStepF,mapH,mapW,size, ovr, lives)
+function [xFish, yFish, thetaFish, fishGraph, fishAlive, ovr, lives] = runShark(xF,yF,xFish,yFish,fishAlive,fishGraph,thetaFish,dStepF,mapH,mapW,size, ovr, lives)
 
-dist = 150;
+dist = 250;
 
 fishAlive = alive(xF, yF, xFish, yFish, fishAlive, ovr, dist);
 
@@ -18,10 +18,10 @@ if (fishAlive)
     endif
 
     %move fish
-    [xFish, yFish, thetaFish] = moveFish(xFish, yFish, thetaFish, dStepF, mapH, mapW);
+    [xFish, yFish, thetaFish] = moveShark(xFish, yFish, thetaFish, dStepF, mapH, mapW);
 
     %draw new fish
-    fishGraph = drawFish(xFish, yFish, thetaFish, size);
+    fishGraph = drawShark(xFish, yFish, thetaFish, size);
 
 elseif (fishAlive == false && ovr == true)
     for (i = 1 : length(fishGraph))
@@ -29,7 +29,7 @@ elseif (fishAlive == false && ovr == true)
     endfor
 
     ovr = false;
-    lives -= 1;
+    lives -= 2;
 
 else
     ovr = false;

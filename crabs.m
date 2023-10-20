@@ -1,86 +1,11 @@
-function [lives, step, words, level] = crabs (level, lives, step, words)
+function [lives, step, words, level, numFish, numCrabs, numParaCrabs, numSharks] = crabs (level, lives, step, words, numFish, numCrabs, numParaCrabs, numSharks)
 counter = 0;
 cmd = "null";
-numFish = 0;
-numCrabs = 0;
-numParaCrabs = 0;
+
+crabsAlive = numCrabs;
+paraCrabsAlive = numParaCrabs;
 
 [mapHeight , mapWidth] = drawMap( "BGImage.png", counter );
-
-if (level == 0)
-  while (cmd != "1" || cmd != "2" || cmd != "3" || cmd != "4")
-    zout = 0;
-
-    if (zout == 0)
-      title(['Enemy Speed (1) easy | (2) medium | (3) hard | (4) Dev Mode'], 'FontSize', 20);
-    else
-      title(['Enemy Speed (1) easy | (2) medium | (3) hard'], 'FontSize', 20);
-    endif
-  cmd = kbhit();
-
-    if (cmd == "1")
-    fprintf('Easy\n');
-      step = 30;
-      words = 'EASY';
-    break
-    endif
-
-    if (cmd == "2")
-    fprintf('Normal\n');
-      step = 50;
-      words = 'NORMAL';
-    break
-    endif
-
-    if (cmd == "3")
-      fprintf('Hard\n');
-      step = 100;
-      words = 'HARD';
-    break
-  endif
-
-  if (zout == 0)
-  if (cmd == "4")
-    title(['Levels | (1) | (2) | (3) | (4) | (5)'], 'FontSize', 20);
-    cmd = kbhit();
-    if (cmd  == "1")
-      level = 1;
-      fprintf('Level 1 selected\n');
-    elseif (cmd == "2")
-      level = 2;
-      fprintf('Level 2 selected\n');
-    elseif (cmd == "3")
-      level = 3;
-      fprintf('Level 3 selected\n');
-    elseif (cmd == "4")
-      level = 4;
-      fprintf('Level 4 selected\n');
-    elseif (cmd == "5")
-      level = 5;
-      fprintf('Level 5 selected\n');
-    else
-      level = 1;
-      fprintf('Level 1 defaulted\n');
-    endif
-    title(['How many lives? (1 - 9)'], 'FontSize', 20);
-    cmd = kbhit();
-    if (cmd == "1" || cmd == "2" || cmd == "3" || cmd == "4" || cmd == "5" || cmd == "6" || cmd == "7" || cmd == "8" || cmd == "9")
-      lives = str2num(cmd)
-      zout += 1;
-    else
-      lives = 5
-      zout += 1;
-    endif
-  endif
-  endif
-
-    if (cmd == "Q")
-      lives = 0;
-      break
-    endif
-
-endwhile
-endif
 
 %Creating captain
 xCapt = 1000;
@@ -88,44 +13,6 @@ yCapt = 500;
 thetaCapt = -pi/2;
 sizeCapt = 50;
 dStep = 50;
-
-%Level 1
-if (level == 1)
-numFish = 1;
-numCrabs = 2;
-numParaCrabs = 0;
-endif
-
-%level 2
-if (level == 2)
-numFish = 2;
-numCrabs = 3;
-numParaCrabs = 0;
-endif
-
-%Level 3
-if (level == 3)
-numFish = 3;
-numCrabs = 3;
-numParaCrabs = 1;
-endif
-
-%Level 4
-if (level == 4)
-numFish = 4;
-numCrabs = 3;
-numParaCrabs = 2;
-endif
-
-%Level 5
-if (level == 5)
-numFish = 6;
-numCrabs = 3;
-numParaCrabs = 3;
-endif
-
-crabsAlive = numCrabs;
-paraCrabsAlive = numParaCrabs;
 
 % Define fish variables
 vars = {'xFish', 'yFish', 'thetaFish', 'sizeFish', 'dStep', 'falive', 'ovr'};
@@ -161,6 +48,18 @@ for i = 1:numParaCrabs
   mult = (i-1) * 8;
   [ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), ParaCrabVars(mult+4), ParaCrabVars(mult+5), ParaCrabVars(mult+6), ParaCrabVars(mult+7), ParaCrabVars(mult+8)] = newPCrab();
   paraCrabGraphics{i} = drawParaCrab(ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), ParaCrabVars(mult+4));
+endfor
+
+% Define shark variables
+vars = {'xShark', 'yShark', 'thetaShark', 'sizeShark', 'dStep', 'falive', 'ovr'};
+x = numSharks;
+sharkVars = varArray(vars, x);
+
+%creating shark
+for i = 1:numSharks
+  mult = (i-1) * 7;
+  [sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkVars(mult+4), sharkVars(mult+5), sharkVars(mult+6), sharkVars(mult+7)] = newShark(i, step);
+  sharkGraphics{i} = drawShark(sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkVars(mult+4));
 endfor
 
 %Plotting captain
@@ -202,6 +101,13 @@ for i = 1:numParaCrabs
   [ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), paraCrabGraphics{i}, ParaCrabVars(mult+6), ParaCrabVars(mult+5), ParaCrabVars(mult+7), ParaCrabVars(mult+8), paraCrabsAlive] = runParaCrab(xCapt,yCapt, thetaCapt, ParaCrabVars(mult+1),ParaCrabVars(mult+2),ParaCrabVars(mult+6),paraCrabGraphics{i},ParaCrabVars(mult+3),ParaCrabVars(mult+5),mapHeight,mapWidth,ParaCrabVars(mult+4), ParaCrabVars(mult+7),xNet, yNet,ParaCrabVars(mult+8),paraCrabsAlive);
 endfor
 
+%Moving shark accordingly
+
+for i = 1:numSharks
+  mult = (i-1) * 7;
+  [sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkGraphics{i}, sharkVars(mult+6), sharkVars(mult+7), lives] = runShark(xCapt,yCapt,sharkVars(mult+1),sharkVars(mult+2),sharkVars(mult+6),sharkGraphics{i},sharkVars(mult+3),sharkVars(mult+5),mapHeight,mapWidth,sharkVars(mult+4), sharkVars(mult+7), lives);
+endfor
+
 cmd = kbhit(1);
 
 if (cmd == "Q")
@@ -224,29 +130,135 @@ if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
 
 endif
 
-%Counting lives
-%Lives reduce if captain collides with fish, end game
-
 if (iscell(crabsAlive))
   crabsAlive = cell2mat(crabsAlive);
 endif
 
 if (lives > 0) && (crabsAlive > 0 || paraCrabsAlive > 0)
-  title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
-elseif (lives > 0 && level != 5)
+  if (level != 10)
+    title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
+  else
+    title([words '           Lives ' num2str(lives) '           CUSTOM           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
+  endif
+elseif (lives > 0 && level == 10)
+  fprintf('You beat your level with %d lives remaining!\n', lives);
+  level += 1;
+  break
+elseif (lives > 0 && level != 9)
   fprintf('You Beat Level %d with %d lives remaining!\n', level, lives);
   break
-elseif (lives > 0 && level == 5)
+elseif (lives > 0 && level == 9)
   fprintf('You Won on %s difficulty\n', words);
   break
 else
-  fprintf('You Lost! You made it to level %d!\n', level);
+  if (level != 10)
+    fprintf('You Lost! You made it to level %d!\n', level);
+  else
+    fprintf('You Lost on your custom level!\n');
+    level += 1;
+  endif
   break
 endif
 
 fflush(stdout);
-pause(.05);
+pause(.01);
 
 endwhile
+
+if (level == 0)
+  while (words != 'EASY' || words != 'NORMAL' || words != 'HARD')
+
+    title(['Enemy Speed (1) easy | (2) medium | (3) hard | (4) Level Select'], 'FontSize', 20);
+    cmd = kbhit();
+
+    if (cmd == "1")
+    fprintf('Easy\n');
+      step = 30;
+      words = 'EASY';
+    break
+    endif
+
+    if (cmd == "2")
+    fprintf('Normal\n');
+      step = 50;
+      words = 'NORMAL';
+    break
+    endif
+
+    if (cmd == "3")
+      fprintf('Hard\n');
+      step = 100;
+      words = 'HARD';
+    break
+  endif
+
+  if (cmd == "4")
+    title(['Levels | (1) | (2) | (3) | (4) | (5) | (6) | (7) | (8) | (9) | (0) Custom'], 'FontSize', 20);
+    cmd = kbhit();
+    if (cmd  == "1" || cmd  == "2" || cmd  == "3" || cmd  == "4" || cmd  == "5"  || cmd  == "6"  || cmd  == "7"  || cmd  == "8" || cmd  == "9")
+      level = str2num(cmd) - 1;
+      fprintf('Level %d selected\n', level + 1);
+    elseif (cmd == "0")
+      level = 10;
+      fprintf('Custom level selected\n');
+      title(['How many crabs?'], 'FontSize', 20);
+      cmd = kbhit();
+      if (cmd  == "1" || cmd  == "2" || cmd  == "3" || cmd  == "4" || cmd  == "5"  || cmd  == "6"  || cmd  == "7"  || cmd  == "8" || cmd  == "9" || cmd == "0")
+        numCrabs = str2num(cmd)
+      else
+        fprintf('0 crabs defaulted\n');
+        numCrabs = 0;
+      endif
+      title(['How many parachute crabs?'], 'FontSize', 20);
+      cmd = kbhit();
+      if (cmd  == "1" || cmd  == "2" || cmd  == "3" || cmd  == "4" || cmd  == "5"  || cmd  == "6"  || cmd  == "7"  || cmd  == "8" || cmd  == "9" || cmd == "0")
+        if (cmd == "0" && numCrabs == 0)
+          fprintf('1 parachute crab required\n');
+          numParaCrabs = 1
+        else
+          numParaCrabs = str2num(cmd)
+        endif
+      else
+        fprintf('0 parachute crabs defaulted\n');
+        numParaCrabs = 0;
+      endif
+      title(['How many fish?'], 'FontSize', 20);
+      cmd = kbhit();
+      if (cmd  == "1" || cmd  == "2" || cmd  == "3" || cmd  == "4" || cmd  == "5"  || cmd  == "6"  || cmd  == "7"  || cmd  == "8" || cmd  == "9" || cmd == "0")
+        numFish = str2num(cmd)
+      else
+        fprintf('0 fish defaulted\n');
+        numFish = 0;
+      endif
+      title(['How many sharks?'], 'FontSize', 20);
+      cmd = kbhit();
+      if (cmd  == "1" || cmd  == "2" || cmd  == "3" || cmd  == "4" || cmd  == "5"  || cmd  == "6"  || cmd  == "7"  || cmd  == "8" || cmd  == "9" || cmd == "0")
+        numSharks = str2num(cmd)
+      else
+        fprintf('0 sharks defaulted\n');
+        numSharks = 0;
+      endif
+      title(['How many lives?'], 'FontSize', 20);
+      cmd = kbhit();
+      if (cmd == "1" || cmd == "2" || cmd == "3" || cmd == "4" || cmd == "5" || cmd == "6" || cmd == "7" || cmd == "8" || cmd == "9")
+        lives = str2num(cmd)
+      else
+        fprintf('5 lives defaulted\n');
+        lives = 5
+      endif
+    else
+      level = 1;
+      fprintf('Level 1 defaulted\n');
+    endif
+
+  endif
+
+    if (cmd == "Q")
+      lives = 0;
+      break
+    endif
+
+endwhile
+endif
 
 endfunction

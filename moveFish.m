@@ -1,4 +1,4 @@
-function [xFish, yFish, thetaFish] = moveFish (xFish, yFish, thetaFish, dStep, height, width)
+function [xFish, yFish, thetaFish] = moveFish(xFish, yFish, thetaFish, dStep, height, width)
 
 if (iscell(xFish))
   xFish = cell2mat(xFish);
@@ -28,9 +28,5 @@ else
   yFish += (sin(thetaFish) * dStep);
 
 endif
-
-%xFish = cell2mat(xFish);
-%yFish = cell2mat(yFish);
-%thetaFish = cell2mat(thetaFish);
 
 endfunction

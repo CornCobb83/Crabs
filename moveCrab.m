@@ -16,13 +16,13 @@ xCrabtemp = xCrab + dStep;
 if (xCrabtemp < 100)
   dStep *= (-1);
   xCrab += dStep;
-  yCrab = randi(300) + 900;
+  yCrab = randi(200) + 1000;
 
   %right side boundaryCrab
 elseif (xCrabtemp > 1950)
   dStep *= (-1);
   xCrab += dStep;
-  yCrab = randi(300) + 900;
+  yCrab = randi(200) + 1000;
 
 else
   xCrab += dStep;
