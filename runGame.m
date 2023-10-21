@@ -15,7 +15,7 @@ while (level < 11 && lives > 0)
 %Level 1
 if (level == 1)
 numFish = 1;
-numCrabs = 2;
+numCrabs = 1;
 numParaCrabs = 0;
 numSharks = 0;
 endif
@@ -23,7 +23,7 @@ endif
 %level 2
 if (level == 2)
 numFish = 2;
-numCrabs = 3;
+numCrabs = 1;
 numParaCrabs = 0;
 numSharks = 0;
 endif
@@ -31,22 +31,22 @@ endif
 %Level 3
 if (level == 3)
 numFish = 3;
-numCrabs = 3;
+numCrabs = 0;
 numParaCrabs = 1;
 numSharks = 0;
 endif
 
 %Level 4
 if (level == 4)
-numFish = 4;
-numCrabs = 3;
-numParaCrabs = 2;
+numFish = 3;
+numCrabs = 2;
+numParaCrabs = 1;
 numSharks = 0;
 endif
 
 %Level 5
 if (level == 5)
-numFish = 5;
+numFish = 3;
 numCrabs = 3;
 numParaCrabs = 3;
 numSharks = 0;
@@ -56,14 +56,14 @@ endif
 if (level == 6)
 numFish = 0;
 numCrabs = 0;
-numParaCrabs = 3;
+numParaCrabs = 2;
 numSharks = 1;
 endif
 
 %Level 7
 if (level == 7)
 numFish = 0;
-numCrabs = 2;
+numCrabs = 0;
 numParaCrabs = 3;
 numSharks = 2;
 endif
@@ -71,8 +71,8 @@ endif
 %Level 8
 if (level == 8)
 numFish = 1;
-numCrabs = 3;
-numParaCrabs = 3;
+numCrabs = 2;
+numParaCrabs = 2;
 numSharks = 2;
 endif
 

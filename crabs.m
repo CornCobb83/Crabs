@@ -83,29 +83,37 @@ yNet = net(2);  % Extract the y-value
 %Moving fish accordingly
 
 for i = 1:numFish
+  if (isgraphics(fishGraphics{i}))
   mult = (i-1) * 7;
   [fishVars(mult+1), fishVars(mult+2), fishVars(mult+3), fishGraphics{i}, fishVars(mult+6), fishVars(mult+7), lives] = runFish(xCapt,yCapt,fishVars(mult+1),fishVars(mult+2),fishVars(mult+6),fishGraphics{i},fishVars(mult+3),fishVars(mult+5),mapHeight,mapWidth,fishVars(mult+4), fishVars(mult+7), lives);
+  endif
 endfor
 
 %Moving crabs accordingly
 
 for i = 1:numCrabs
+  if (isgraphics(crabGraphics{i}))
   mult = (i-1) * 7;
   [crabVars(mult+1), crabVars(mult+2), crabVars(mult+3), crabGraphics{i}, crabVars(mult+4), crabVars(mult+5), crabVars(mult+6), crabVars(mult+7), crabsAlive] = runCrab(xCapt,yCapt,crabVars(mult+1),crabVars(mult+2),crabVars(mult+6),crabGraphics{i},crabVars(mult+3),crabVars(mult+5),mapHeight,mapWidth,crabVars(mult+4), crabVars(mult+7), xNet, yNet, crabsAlive);
+  endif
 endfor
 
 %Moving parachute crabs accordingly
 
 for i = 1:numParaCrabs
+  if (isgraphics(paraCrabGraphics{i}))
   mult = (i-1) * 8;
   [ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), paraCrabGraphics{i}, ParaCrabVars(mult+6), ParaCrabVars(mult+5), ParaCrabVars(mult+7), ParaCrabVars(mult+8), paraCrabsAlive] = runParaCrab(xCapt,yCapt, thetaCapt, ParaCrabVars(mult+1),ParaCrabVars(mult+2),ParaCrabVars(mult+6),paraCrabGraphics{i},ParaCrabVars(mult+3),ParaCrabVars(mult+5),mapHeight,mapWidth,ParaCrabVars(mult+4), ParaCrabVars(mult+7),xNet, yNet,ParaCrabVars(mult+8),paraCrabsAlive);
+  endif
 endfor
 
 %Moving shark accordingly
 
 for i = 1:numSharks
+  if (isgraphics(sharkGraphics{i}))
   mult = (i-1) * 7;
   [sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkGraphics{i}, sharkVars(mult+6), sharkVars(mult+7), lives] = runShark(xCapt,yCapt,sharkVars(mult+1),sharkVars(mult+2),sharkVars(mult+6),sharkGraphics{i},sharkVars(mult+3),sharkVars(mult+5),mapHeight,mapWidth,sharkVars(mult+4), sharkVars(mult+7), lives);
+  endif
 endfor
 
 cmd = kbhit(0.25);

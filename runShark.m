@@ -24,9 +24,9 @@ if (fishAlive)
     fishGraph = drawShark(xFish, yFish, thetaFish, size);
 
 elseif (fishAlive == false && ovr == true)
-    for (i = 1 : length(fishGraph))
-       set(fishGraph(i), 'Visible', "off");
-    endfor
+    if isgraphics(fishGraph)
+      delete(fishGraph);
+    endif
 
     ovr = false;
     lives -= 2;
