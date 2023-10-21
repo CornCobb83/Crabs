@@ -18,7 +18,7 @@ dthetaFish = pi/2;
 xFishtemp = xFish - (cos(thetaFish) * dStep);
 yFishtemp = yFish - (sin(thetaFish) * dStep);
 
-if (xFishtemp > 150 && xFishtemp < width - 150 && yFishtemp > 150 && yFishtemp < height - 150)
+if (xFishtemp > 250 && xFishtemp < width - 250 && yFishtemp > 250 && yFishtemp < height - 250)
   xFish -= (cos(thetaFish) * dStep);
   yFish -= (sin(thetaFish) * dStep);
 

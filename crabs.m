@@ -108,7 +108,7 @@ for i = 1:numSharks
   [sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkGraphics{i}, sharkVars(mult+6), sharkVars(mult+7), lives] = runShark(xCapt,yCapt,sharkVars(mult+1),sharkVars(mult+2),sharkVars(mult+6),sharkGraphics{i},sharkVars(mult+3),sharkVars(mult+5),mapHeight,mapWidth,sharkVars(mult+4), sharkVars(mult+7), lives);
 endfor
 
-cmd = kbhit(1);
+cmd = kbhit(0.25);
 
 if (cmd == "Q")
   lives = 0;
@@ -145,7 +145,7 @@ elseif (lives > 0 && level == 10)
   level += 1;
   break
 elseif (lives > 0 && level != 9)
-  fprintf('You Beat Level %d with %d lives remaining!\n', level, lives);
+  fprintf('You beat Level %d with %d lives remaining!\n', level, lives);
   break
 elseif (lives > 0 && level == 9)
   fprintf('You beat the game on %s difficulty\n', words);
@@ -155,14 +155,14 @@ else
   if (level != 10)
     fprintf('You Lost! You made it to level %d!\n', level);
   else
-    fprintf('You Lost on your custom level!\n');
+    fprintf('You lost on your custom level!\n');
     level += 1;
   endif
   break
 endif
 
 fflush(stdout);
-pause(.01);
+pause(0.2);
 
 endwhile
 
@@ -174,21 +174,21 @@ if (level == 0)
 
     if (cmd == "1")
     fprintf('Easy\n');
-      step = 30;
+      step = 20;
       words = 'EASY';
     break
     endif
 
     if (cmd == "2")
     fprintf('Normal\n');
-      step = 50;
+      step = 40;
       words = 'NORMAL';
     break
     endif
 
     if (cmd == "3")
       fprintf('Hard\n');
-      step = 100;
+      step = 60;
       words = 'HARD';
     break
   endif
