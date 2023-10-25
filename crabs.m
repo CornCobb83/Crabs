@@ -63,22 +63,41 @@ for i = 1:numSharks
 endfor
 
 %Plotting captain
-captainGraphics = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
+[xNet, yNet, captainGraphics] = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
 
 %MOVEMENT
 while (true && level != 0)
 
-%Code for setting collect point to net location
-capt = getCapt(sizeCapt, xCapt, yCapt, thetaCapt);
-R = getRotation(thetaCapt);
-captRotated = R * capt;
-T = getTranslation(xCapt, yCapt);
-capt = T * captRotated;
-net = capt(:, 19);
+if (iscell(crabsAlive))
+  crabsAlive = cell2mat(crabsAlive);
+endif
 
-% Extract x and y values from net(1, :)
-xNet = net(1);  % Extract the x-value
-yNet = net(2);  % Extract the y-value
+if (lives > 0) && (crabsAlive > 0 || paraCrabsAlive > 0)
+  if (level != 10)
+    title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
+  else
+    title([words '           Lives ' num2str(lives) '           CUSTOM           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
+  endif
+elseif (lives > 0 && level == 10)
+  fprintf('You beat your custom level with %d lives remaining!\n', lives);
+  level += 1;
+  break
+elseif (lives > 0 && level != 9)
+  fprintf('You beat Level %d with %d lives remaining!\n', level, lives);
+  break
+elseif (lives > 0 && level == 9)
+  fprintf('You beat the game on %s difficulty\n', words);
+  level = 11;
+  break
+else
+  if (level != 10)
+    fprintf('You Lost! You made it to level %d!\n', level);
+  else
+    fprintf('You lost on your custom level!\n');
+    level += 1;
+  endif
+  break
+endif
 
 %Moving fish accordingly
 
@@ -134,43 +153,12 @@ if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
       [xCapt, yCapt, thetaCapt] = moveCaptain(cmd, xCapt, yCapt, thetaCapt, dStep, mapHeight, mapWidth);
 
       %draw new captain
-      captainGraphics = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
+      [xNet, yNet, captainGraphics] = drawCapt(xCapt, yCapt, thetaCapt, sizeCapt);
 
-endif
-
-if (iscell(crabsAlive))
-  crabsAlive = cell2mat(crabsAlive);
-endif
-
-if (lives > 0) && (crabsAlive > 0 || paraCrabsAlive > 0)
-  if (level != 10)
-    title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
-  else
-    title([words '           Lives ' num2str(lives) '           CUSTOM           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
-  endif
-elseif (lives > 0 && level == 10)
-  fprintf('You beat your custom level with %d lives remaining!\n', lives);
-  level += 1;
-  break
-elseif (lives > 0 && level != 9)
-  fprintf('You beat Level %d with %d lives remaining!\n', level, lives);
-  break
-elseif (lives > 0 && level == 9)
-  fprintf('You beat the game on %s difficulty\n', words);
-  level = 11;
-  break
-else
-  if (level != 10)
-    fprintf('You Lost! You made it to level %d!\n', level);
-  else
-    fprintf('You lost on your custom level!\n');
-    level += 1;
-  endif
-  break
 endif
 
 fflush(stdout);
-pause(0.2);
+pause(0.01);
 
 endwhile
 

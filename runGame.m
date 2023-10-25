@@ -90,8 +90,6 @@ if (level != 10)
   level += 1;
 endif
 
-clearAllMemoizedCaches
-
 endwhile
 
 clear

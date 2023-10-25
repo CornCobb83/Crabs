@@ -1,4 +1,4 @@
-function captainGraphics = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt)
+function [xNet, yNet, captainGraphics] = drawCapt (xCapt , yCapt , thetaCapt , sizeCapt)
 % In the future, this function will draw the captain at the given
 % position (xCapt , yCapt) , with heading thetaCapt.
 % For now, it draws the captain at the (0, 0) with 0 heading.
@@ -60,6 +60,11 @@ captainGraphics(14) = drawLine(pt15 , pt17 , "k");
 captainGraphics(15) = drawLine(pt17 , pt18 , "k");
 captainGraphics(16) = drawLine(pt18 , pt16 , "k");
 captainGraphics(17) = drawLine(pt19 , pt20 , "k");
+
+net = pt19;
+
+xNet = net(1);  % Extract the x-value
+yNet = net(2);  % Extract the y-value
 
 endfunction
 
