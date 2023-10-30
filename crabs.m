@@ -17,49 +17,49 @@ dStep = 50;
 % Define fish variables
 vars = {'xFish', 'yFish', 'thetaFish', 'sizeFish', 'dStep', 'falive', 'ovr'};
 x = numFish;
-fishVars = varArray(vars, x);
+fish = varArray(vars, x);
 
 %creating fish
 for i = 1:numFish
   mult = (i-1) * 7;
-  [fishVars(mult+1), fishVars(mult+2), fishVars(mult+3), fishVars(mult+4), fishVars(mult+5), fishVars(mult+6), fishVars(mult+7)] = newFish(i, step);
-  fishGraphics{i} = drawFish(fishVars(mult+1), fishVars(mult+2), fishVars(mult+3), fishVars(mult+4));
+  [xFish(i), yFish(i), fish(mult+3), fish(mult+4), fish(mult+5), fish(mult+6), fish(mult+7)] = newFish(i, step);
+  fishGraphics{i} = drawFish(xFish(i), yFish(i), fish(mult+3), fish(mult+4));
 endfor
 
 % Define crab variables
 vars = {'xCrab', 'yCrab', 'thetaCrab', 'sizeCrab', 'dStep', 'calive', 'ovr'};
 x = numCrabs;
-crabVars = varArray(vars, x);
+crab = varArray(vars, x);
 
 % Creating crabs
 for i = 1:numCrabs
   mult = (i-1) * 7;
-  [crabVars(mult+1), crabVars(mult+2), crabVars(mult+3), crabVars(mult+4), crabVars(mult+5), crabVars(mult+6), crabVars(mult+7)] = newCrab();
-  crabGraphics{i} = drawCrab(crabVars(mult+1), crabVars(mult+2), crabVars(mult+3), crabVars(mult+4));
+  [crab(mult+1), crab(mult+2), crab(mult+3), crab(mult+4), crab(mult+5), crab(mult+6), crab(mult+7)] = newCrab();
+  crabGraphics{i} = drawCrab(crab(mult+1), crab(mult+2), crab(mult+3), crab(mult+4));
 endfor
 
 % Define parachute crab variables
 vars = {'xCrab', 'yCrab', 'thetaCrab', 'sizeCrab', 'dStep', 'calive', 'ovr', 'sc'};
 x = numParaCrabs;
-ParaCrabVars = varArray(vars, x);
+paraCrab = varArray(vars, x);
 
 % Creating parachute crabs
 for i = 1:numParaCrabs
   mult = (i-1) * 8;
-  [ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), ParaCrabVars(mult+4), ParaCrabVars(mult+5), ParaCrabVars(mult+6), ParaCrabVars(mult+7), ParaCrabVars(mult+8)] = newPCrab();
-  paraCrabGraphics{i} = drawParaCrab(ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), ParaCrabVars(mult+4));
+  [paraCrab(mult+1), paraCrab(mult+2), paraCrab(mult+3), paraCrab(mult+4), paraCrab(mult+5), paraCrab(mult+6), paraCrab(mult+7), paraCrab(mult+8)] = newPCrab();
+  paraCrabGraphics{i} = drawParaCrab(paraCrab(mult+1), paraCrab(mult+2), paraCrab(mult+3), paraCrab(mult+4));
 endfor
 
 % Define shark variables
 vars = {'xShark', 'yShark', 'thetaShark', 'sizeShark', 'dStep', 'falive', 'ovr'};
 x = numSharks;
-sharkVars = varArray(vars, x);
+shark = varArray(vars, x);
 
 %creating shark
 for i = 1:numSharks
   mult = (i-1) * 7;
-  [sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkVars(mult+4), sharkVars(mult+5), sharkVars(mult+6), sharkVars(mult+7)] = newShark(i, step);
-  sharkGraphics{i} = drawShark(sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkVars(mult+4));
+  [shark(mult+1), shark(mult+2), shark(mult+3), shark(mult+4), shark(mult+5), shark(mult+6), shark(mult+7)] = newShark(i, step);
+  sharkGraphics{i} = drawShark(shark(mult+1), shark(mult+2), shark(mult+3), shark(mult+4));
 endfor
 
 %Plotting captain
@@ -104,7 +104,7 @@ endif
 for i = 1:numFish
   if (isgraphics(fishGraphics{i}))
   mult = (i-1) * 7;
-  [fishVars(mult+1), fishVars(mult+2), fishVars(mult+3), fishGraphics{i}, fishVars(mult+6), fishVars(mult+7), lives] = runFish(xCapt,yCapt,fishVars(mult+1),fishVars(mult+2),fishVars(mult+6),fishGraphics{i},fishVars(mult+3),fishVars(mult+5),mapHeight,mapWidth,fishVars(mult+4), fishVars(mult+7), lives);
+  [xFish(i), yFish(i), fish(mult+3), fishGraphics{i}, fish(mult+6), fish(mult+7), lives] = runFish(xCapt,yCapt,xFish(i),yFish(i),fish(mult+6),fishGraphics{i},fish(mult+3),fish(mult+5),mapHeight,mapWidth,fish(mult+4), fish(mult+7), lives);
   endif
 endfor
 
@@ -113,7 +113,7 @@ endfor
 for i = 1:numCrabs
   if (isgraphics(crabGraphics{i}))
   mult = (i-1) * 7;
-  [crabVars(mult+1), crabVars(mult+2), crabVars(mult+3), crabGraphics{i}, crabVars(mult+4), crabVars(mult+5), crabVars(mult+6), crabVars(mult+7), crabsAlive] = runCrab(xCapt,yCapt,crabVars(mult+1),crabVars(mult+2),crabVars(mult+6),crabGraphics{i},crabVars(mult+3),crabVars(mult+5),mapHeight,mapWidth,crabVars(mult+4), crabVars(mult+7), xNet, yNet, crabsAlive);
+  [crab(mult+1), crab(mult+2), crab(mult+3), crabGraphics{i}, crab(mult+4), crab(mult+5), crab(mult+6), crab(mult+7), crabsAlive] = runCrab(xCapt,yCapt,crab(mult+1),crab(mult+2),crab(mult+6),crabGraphics{i},crab(mult+3),crab(mult+5),mapHeight,mapWidth,crab(mult+4), crab(mult+7), xNet, yNet, crabsAlive);
   endif
 endfor
 
@@ -122,7 +122,7 @@ endfor
 for i = 1:numParaCrabs
   if (isgraphics(paraCrabGraphics{i}))
   mult = (i-1) * 8;
-  [ParaCrabVars(mult+1), ParaCrabVars(mult+2), ParaCrabVars(mult+3), paraCrabGraphics{i}, ParaCrabVars(mult+6), ParaCrabVars(mult+5), ParaCrabVars(mult+7), ParaCrabVars(mult+8), paraCrabsAlive] = runParaCrab(xCapt,yCapt, thetaCapt, ParaCrabVars(mult+1),ParaCrabVars(mult+2),ParaCrabVars(mult+6),paraCrabGraphics{i},ParaCrabVars(mult+3),ParaCrabVars(mult+5),mapHeight,mapWidth,ParaCrabVars(mult+4), ParaCrabVars(mult+7),xNet, yNet,ParaCrabVars(mult+8),paraCrabsAlive);
+  [paraCrab(mult+1), paraCrab(mult+2), paraCrab(mult+3), paraCrabGraphics{i}, paraCrab(mult+6), paraCrab(mult+5), paraCrab(mult+7), paraCrab(mult+8), paraCrabsAlive] = runParaCrab(xCapt,yCapt, thetaCapt, paraCrab(mult+1),paraCrab(mult+2),paraCrab(mult+6),paraCrabGraphics{i},paraCrab(mult+3),paraCrab(mult+5),mapHeight,mapWidth,paraCrab(mult+4), paraCrab(mult+7),xNet, yNet,paraCrab(mult+8),paraCrabsAlive);
   endif
 endfor
 
@@ -131,7 +131,7 @@ endfor
 for i = 1:numSharks
   if (isgraphics(sharkGraphics{i}))
   mult = (i-1) * 7;
-  [sharkVars(mult+1), sharkVars(mult+2), sharkVars(mult+3), sharkGraphics{i}, sharkVars(mult+6), sharkVars(mult+7), lives] = runShark(xCapt,yCapt,sharkVars(mult+1),sharkVars(mult+2),sharkVars(mult+6),sharkGraphics{i},sharkVars(mult+3),sharkVars(mult+5),mapHeight,mapWidth,sharkVars(mult+4), sharkVars(mult+7), lives);
+  [shark(mult+1), shark(mult+2), shark(mult+3), sharkGraphics{i}, shark(mult+6), shark(mult+7), lives] = runShark(xCapt,yCapt,shark(mult+1),shark(mult+2),shark(mult+6),sharkGraphics{i},shark(mult+3),shark(mult+5),mapHeight,mapWidth,shark(mult+4), shark(mult+7), lives);
   endif
 endfor
 
