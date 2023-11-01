@@ -1,15 +1,5 @@
 function sharkGraphics = drawShark (xShark , yShark , thetaShark , sizeShark)
 
-if (iscell(xShark))
-  xShark = cell2mat(xShark);
-endif
-if (iscell(yShark))
-  yShark = cell2mat(yShark);
-endif
-if (iscell(thetaShark))
-  thetaShark = cell2mat(thetaShark);
-endif
-
 Shark = getShark(sizeShark);
 
 R = getRotation(thetaShark);

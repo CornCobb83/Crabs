@@ -2,13 +2,6 @@ function [xCrab, yCrab, thetaCrab, crabGraph, sizeCrab, dStepC, crabAlive, ovr, 
 
 crabAlive = aliveCrab(xC, yC, thetaCrab, xCrab, yCrab, crabAlive, ovr, xNet, yNet);
 
-if (iscell(crabAlive))
-  crabAlive = cell2mat(crabAlive);
-endif
-if (iscell(ovr))
-  ovr = cell2mat(ovr);
-endif
-
 if (crabAlive)
 
     if isgraphics(crabGraph)

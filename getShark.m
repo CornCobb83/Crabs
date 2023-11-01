@@ -1,9 +1,5 @@
 function shark = getShark(s)
 
-if (iscell(s))
-  s = cell2mat(s);
-endif
-
 sharkPt1 = [-2 * s; -s; 1];
 sharkPt2 = [-3.75 * s; -s; 1];
 sharkPt3 = [-2.5 * s; 0; 1];

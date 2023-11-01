@@ -53,11 +53,11 @@ endfor
 %Plotting captain
 [xNet, yNet, captainGraphics] = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
 
-%MOVEMENT
+%Running game with given vars
 while (true && level != 0)
 
 %Printing
-[check, level] = printTo(level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth);
+[check, level] = printTo(level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth, xCapt, yCapt, thetaCapt, sizeCapt, captainGraphics);
 if (check == false)
   break
 endif

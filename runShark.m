@@ -4,13 +4,6 @@ dist = 250;
 
 fishAlive = alive(xF, yF, xFish, yFish, fishAlive, ovr, dist);
 
-if (iscell(fishAlive))
-  fishAlive = cell2mat(fishAlive);
-endif
-if (iscell(ovr))
-  ovr = cell2mat(ovr);
-endif
-
 if (fishAlive)
 
     if isgraphics(fishGraph)
