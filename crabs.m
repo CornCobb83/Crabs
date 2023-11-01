@@ -33,7 +33,7 @@ for i = 1:numCrabs
 endfor
 
 % Parachute crab variables
-% vars = {'paraxCrab', 'parayCrab', 'parathetaCrab', 'parasizeCrab', 'paradStep', 'paraalive', 'paraovr', 'sc'};
+% vars = {'paraxCrab', 'parayCrab', 'parathetaCrab', 'parasizeCrab', 'paradStep', 'paracalive', 'paraovr', 'sc'};
 
 % Creating parachute crabs
 for i = 1:numParaCrabs
@@ -56,34 +56,9 @@ endfor
 %MOVEMENT
 while (true && level != 0)
 
-if (iscell(crabsAlive))
-  crabsAlive = cell2mat(crabsAlive);
-endif
-
-if (lives > 0) && (crabsAlive > 0 || paraCrabsAlive > 0)
-  if (level != 10)
-    title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
-  else
-    title([words '           Lives ' num2str(lives) '           CUSTOM           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
-  endif
-elseif (lives > 0 && level == 10)
-  fprintf('You beat your custom level with %d lives remaining!\n', lives);
-  level += 1;
-  break
-elseif (lives > 0 && level != 9)
-  fprintf('You beat Level %d with %d lives remaining!\n', level, lives);
-  break
-elseif (lives > 0 && level == 9)
-  fprintf('You beat the game on %s difficulty\n', words);
-  level = 11;
-  break
-else
-  if (level != 10)
-    fprintf('You Lost! You made it to level %d!\n', level);
-  else
-    fprintf('You lost on your custom level!\n');
-    level += 1;
-  endif
+%Printing
+[check, level] = printTo(level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth);
+if (check == false)
   break
 endif
 
@@ -123,7 +98,6 @@ cmd = kbhit(0.25);
 
 if (cmd == "Q")
   lives = 0;
-  close all
 endif
 
 %Keyboard interactions

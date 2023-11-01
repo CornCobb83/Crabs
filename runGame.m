@@ -98,7 +98,7 @@ clearvars
 close all
 
 %clears command window after x seconds
-pause(5)
+pause(0)
 clc
 
 endfunction
