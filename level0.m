@@ -86,21 +86,21 @@ while (words != 'EASY' || words != 'NORMAL' || words != 'HARD')
     endif
 
     if (cmd == "1")
-    fprintf('Easy\n');
+    %fprintf('Easy\n');
       step = 20;
       words = 'EASY';
     break
     endif
 
     if (cmd == "2")
-    fprintf('Normal\n');
+    %fprintf('Normal\n');
       step = 40;
       words = 'NORMAL';
     break
     endif
 
     if (cmd == "3")
-      fprintf('Hard\n');
+      %fprintf('Hard\n');
       step = 60;
       words = 'HARD';
     break
@@ -168,7 +168,7 @@ while (words != 'EASY' || words != 'NORMAL' || words != 'HARD')
 endif
 
     if (cmd == "Q")
-      level = -1;
+      level = 11;
       break
     endif
 

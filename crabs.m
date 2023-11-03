@@ -60,9 +60,6 @@ while (true && level > 0)
 
 %Printing
 [level, check] = printTo(level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth, xCapt, yCapt, thetaCapt, sizeCapt, captainGraphics);
-if (check == false)
-  break
-endif
 
 %Moving fish accordingly
 
@@ -120,6 +117,39 @@ endif
 
 fflush(stdout);
 pause(0.01);
+
+if (check == false)
+  % Clearing any graphics left behind
+for i = 1:numFish
+  if (isgraphics(fishGraphics{i}))
+    delete(fishGraphics{i});
+  endif
+endfor
+
+for i = 1:numCrabs
+  if (isgraphics(crabGraphics{i}))
+    delete(crabGraphics{i});
+  endif
+endfor
+
+for i = 1:numParaCrabs
+  if (isgraphics(paraCrabGraphics{i}))
+    delete(paraCrabGraphics{i});
+  endif
+endfor
+
+for i = 1:numSharks
+  if (isgraphics(sharkGraphics{i}))
+    delete(sharkGraphics{i});
+  endif
+endfor
+
+    if isgraphics(captainGraphics)
+      delete(captainGraphics);
+    endif
+
+  break
+endif
 
 endwhile
 

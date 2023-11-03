@@ -79,8 +79,8 @@ endif
 %Level 9
 if (level == 9)
 numFish = 2;
-numCrabs = 3;
-numParaCrabs = 3;
+numCrabs = 2;
+numParaCrabs = 2;
 numSharks = 2;
 endif
 

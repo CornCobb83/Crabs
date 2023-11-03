@@ -20,8 +20,11 @@ elseif (lives > 0 && level == 10)
     pause(0.05);
     thetaCapt += (pi/6);
   endfor
-  level += 1;
+  level = 0;
   check = false;
+  delete(WordText1);
+  delete(WordText2);
+  title([''], 'FontSize', 30);
 
 elseif (lives > 0 && level != 9)
   title(['Difficulty: ' words], 'FontSize', 30);
@@ -35,6 +38,7 @@ elseif (lives > 0 && level != 9)
   endfor
   delete(WordText1);
   delete(WordText2);
+  title([''], 'FontSize', 30);
   check = false;
 
 elseif (lives > 0 && level == 9)
@@ -47,6 +51,9 @@ elseif (lives > 0 && level == 9)
     pause(0.05);
     thetaCapt += (pi/6);
   endfor
+  delete(WordText1);
+  delete(WordText2);
+  title([''], 'FontSize', 30);
   level = 0;
   check = false;
 
@@ -57,12 +64,18 @@ else
     WordText2 = text(mapWidth/2, mapHeight/1.75, strcat('Level: ', num2str(level)), 'FontSize', 16, 'Color', 'r');
     pause(5);
     level = 0;
+  delete(WordText1);
+  delete(WordText2);
+  title([''], 'FontSize', 30);
+
 
   else
     title(['Custom level - ' words], 'FontSize', 30);
     WordText1 = text(mapWidth/2.5, mapHeight/2, strcat('You Lose'), 'FontSize', 48, 'Color', 'r');
     pause(5);
     level = 0;
+  delete(WordText1);
+  title([''], 'FontSize', 30);
 
   endif
 
