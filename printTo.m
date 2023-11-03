@@ -26,6 +26,10 @@ elseif (lives > 0 && level == 10)
   delete(WordText2);
   title([''], 'FontSize', 30);
 
+      if isgraphics(captainGraphics)
+      delete(captainGraphics);
+    endif
+
 elseif (lives > 0 && level != 9)
   title(['Difficulty: ' words], 'FontSize', 30);
   WordText1 = text(mapWidth/3, mapHeight/2, strcat('Level ', num2str(level), ' complete!'), 'FontSize', 36, 'Color', 'r');
@@ -40,6 +44,10 @@ elseif (lives > 0 && level != 9)
   delete(WordText2);
   title([''], 'FontSize', 30);
   check = false;
+
+      if isgraphics(captainGraphics)
+      delete(captainGraphics);
+    endif
 
 elseif (lives > 0 && level == 9)
   title(['Difficulty: ' words], 'FontSize', 30);
@@ -56,6 +64,10 @@ elseif (lives > 0 && level == 9)
   title([''], 'FontSize', 30);
   level = 0;
   check = false;
+
+    if isgraphics(captainGraphics)
+      delete(captainGraphics);
+    endif
 
 else
   if (level != 10)
