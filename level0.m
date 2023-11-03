@@ -9,12 +9,81 @@ numFish = 0;
 numCrabs = 0;
 numParaCrabs = 0;
 numSharks = 0;
+numTitleCrabs = 1;
+
+cmd = 'null';
+
+for i = 1:numTitleCrabs
+  [xCrab(i), yCrab(i), thetaCrab(i), sizeCrab(i), dStep(i), calive(i), ovr(i)] = newCrab();
+  crabGraphics{i} = drawCrab(xCrab(i), yCrab(i), thetaCrab(i), sizeCrab(i));
+endfor
+
+while (true)
+
+  WordText1 = text(650, 500, strcat('Crabs'), 'FontSize', 100, 'Color', 'k');
+  WordText2 = text(600, 700, strcat('Press SPACE to start'), 'FontSize', 32, 'Color', 'k');
+
+  for i = 1:numTitleCrabs
+
+  if (isgraphics(crabGraphics{i}))
+    delete(crabGraphics{i});
+  endif
+
+  xCrabtemp = xCrab(i) + dStep(i);
+
+  %Left side boundaryCrab
+  if (xCrabtemp < 100)
+    dStep(i) *= (-1);
+    xCrab(i) += dStep(i);
+    yCrab(i) = randi(200) + 1000;
+
+  %right side boundaryCrab
+  elseif (xCrabtemp > 1950)
+    dStep(i) *= (-1);
+    xCrab(i) += dStep(i);
+    yCrab(i) = randi(200) + 1000;
+
+  else
+    xCrab(i) += dStep(i);
+
+  endif
+
+  crabGraphics{i} = drawCrab(xCrab(i), yCrab(i), thetaCrab(i), sizeCrab(i));
+
+endfor
+
+  cmd = kbhit(1);
+
+  if (cmd == "Q")
+    level = -1;
+    break
+  elseif (cmd == " ")
+    break
+  endif
+
+fflush(stdout);
+pause(0.05);
+
+  delete(WordText1);
+  delete(WordText2);
+
+endwhile
+
+delete(WordText1);
+delete(WordText2);
+for i = 1:numTitleCrabs
+  if (isgraphics(crabGraphics{i}))
+    delete(crabGraphics{i});
+  endif
+endfor
 
 while (words != 'EASY' || words != 'NORMAL' || words != 'HARD')
 
 
     title(['Enemy Speed (1) easy | (2) medium | (3) hard | (4) Level Select'], 'FontSize', 20);
-    cmd = kbhit();
+    if (cmd != "Q")
+      cmd = kbhit();
+    endif
 
     if (cmd == "1")
     fprintf('Easy\n');
@@ -99,7 +168,7 @@ while (words != 'EASY' || words != 'NORMAL' || words != 'HARD')
 endif
 
     if (cmd == "Q")
-      lives = 0;
+      level = -1;
       break
     endif
 

@@ -51,10 +51,12 @@ for i = 1:numSharks
 endfor
 
 %Plotting captain
-[xNet, yNet, captainGraphics] = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
+if (level > 0)
+  [xNet, yNet, captainGraphics] = drawCapt (xCapt, yCapt, thetaCapt, sizeCapt);
+endif
 
 %Running game with given vars
-while (true && level != 0)
+while (true && level > 0)
 
 %Printing
 [check, level] = printTo(level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth, xCapt, yCapt, thetaCapt, sizeCapt, captainGraphics);
@@ -97,7 +99,8 @@ endfor
 cmd = kbhit(1);
 
 if (cmd == "Q")
-  lives = 0;
+  level = -10;
+  break
 endif
 
 %Keyboard interactions
