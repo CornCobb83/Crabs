@@ -10,7 +10,7 @@ numCrabs = 0;
 numParaCrabs = 0;
 numSharks = 0;
 
-while (level < 11 && level >= 0 && lives > 0)
+while (level < 11 && lives > 0)
 
 %Level 1
 if (level == 1)
@@ -79,16 +79,14 @@ endif
 %Level 9
 if (level == 9)
 numFish = 2;
-numCrabs = 3;
-numParaCrabs = 3;
+numCrabs = 2;
+numParaCrabs = 2;
 numSharks = 2;
 endif
 
 [lives, step, words, level, numFish, numCrabs, numParaCrabs, numSharks] = crabs (level, lives, step, words, numFish, numCrabs, numParaCrabs, numSharks);
 
-if (level < 0)
-  break
-elseif (level != 10)
+if (level != 10)
   level += 1;
 endif
 

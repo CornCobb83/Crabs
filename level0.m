@@ -55,7 +55,7 @@ endfor
   cmd = kbhit(1);
 
   if (cmd == "Q")
-    level = -1;
+    level = 11;
     break
   elseif (cmd == " ")
     break

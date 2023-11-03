@@ -1,7 +1,8 @@
-function [check, level] = printTo (level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth, xCapt, yCapt, thetaCapt, sizeCapt, captainGraphics)
+function [level, check] = printTo (level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth, xCapt, yCapt, thetaCapt, sizeCapt, captainGraphics)
 
 check = true;
 
+if (level > -5)
 if (lives > 0) && (crabsAlive > 0 || paraCrabsAlive > 0)
   if (level != 10)
     title([words '           Lives ' num2str(lives) '           Level: ' num2str(level) '           Crabs collected ' num2str((numCrabs + numParaCrabs) - crabsAlive - paraCrabsAlive) '/' num2str(numCrabs + numParaCrabs)], 'FontSize', 30);
@@ -67,6 +68,7 @@ else
 
   check = false;
 
+  endif
 endif
 
 endfunction

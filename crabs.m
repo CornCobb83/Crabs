@@ -59,7 +59,7 @@ endif
 while (true && level > 0)
 
 %Printing
-[check, level] = printTo(level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth, xCapt, yCapt, thetaCapt, sizeCapt, captainGraphics);
+[level, check] = printTo(level, lives, words, numCrabs, numParaCrabs, crabsAlive, paraCrabsAlive, mapHeight, mapWidth, xCapt, yCapt, thetaCapt, sizeCapt, captainGraphics);
 if (check == false)
   break
 endif
@@ -99,7 +99,7 @@ endfor
 cmd = kbhit(1);
 
 if (cmd == "Q")
-  level = -10;
+  level = 11;
   break
 endif
 
