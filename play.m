@@ -90,6 +90,8 @@ if (level != 10)
   level += 1;
 endif
 
+clc
+
 endwhile
 
 clear
@@ -99,6 +101,5 @@ close all
 
 %clears command window after x seconds
 pause(0)
-clc
 
 endfunction

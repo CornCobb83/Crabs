@@ -119,6 +119,7 @@ fflush(stdout);
 pause(0.01);
 
 if (check == false)
+
   % Clearing any graphics left behind
 for i = 1:numFish
   if (isgraphics(fishGraphics{i}))
