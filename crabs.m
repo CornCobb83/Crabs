@@ -93,7 +93,9 @@ for i = 1:numSharks
   endif
 endfor
 
-cmd = kbhit(1);
+commandwindow();
+
+cmd = kbhit(0.25);
 
 if (cmd == "Q")
   level = 11;
@@ -116,7 +118,7 @@ if (cmd == "w" || cmd == "a" || cmd == "s" || cmd == "d")
 endif
 
 fflush(stdout);
-pause(0.01);
+pause(0.25);
 
 if (check == false)
 
@@ -156,7 +158,7 @@ endwhile
 
 if (level == 0)
 
-    [words, level, lives, numCrabs, numFish, numParaCrabs, numSharks, cmd] = level0 ();
+    [words, level, lives, numCrabs, numFish, numParaCrabs, numSharks, cmd, step] = level0 ();
 
 endif
 

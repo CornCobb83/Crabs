@@ -1,4 +1,4 @@
-function [words, level, lives, numCrabs, numFish, numParaCrabs, numSharks, cmd] = level0 ()
+function [words, level, lives, numCrabs, numFish, numParaCrabs, numSharks, cmd, step] = level0 ()
 
 level = 0;
 lives = 5;
@@ -52,6 +52,8 @@ while (true)
 
 endfor
 
+  commandwindow();
+
   cmd = kbhit(1);
 
   if (cmd == "Q")
@@ -79,6 +81,7 @@ endfor
 
 while (words != 'EASY' || words != 'NORMAL' || words != 'HARD')
 
+  commandwindow();
 
     title(['Enemy Speed (1) easy | (2) medium | (3) hard | (4) Level Select'], 'FontSize', 20);
     if (cmd != "Q")

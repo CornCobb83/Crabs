@@ -18,6 +18,8 @@ img = imread(imageName);
 %display background image in figure(1)
 imshow(imageName);
 
+
+
 %put a title on the figure
 %title(['Lives             Level:             Crabs collected 0/ '], 'FontSize', 20);
 
