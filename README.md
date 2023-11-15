@@ -1,5 +1,5 @@
 Function: crabs: ->  <br>
-Purpose: Main function of program, calls all functions, declares values of x, y, theta, size, and dStep for all plotted ojects(captain, crab, fish). Uses functions to plot all objects, move captain, fish, and crab accordingly, and have crabs go invisible accordingly. <br>
+Purpose: Main function of program, calls all functions, declares values of x, y, theta, size, and dStep for all plotted ojects(captain, crab, fish). Uses functions to plot all objects, move captain, fish, and crab accordingly, and have crabs go invisible accordingly, test. <br>
 Dependencies: ALL OF THE FOLLOWING <br>
 Call: crabs() <br>
 Side Effects: Runs entire game. <br>
